@@ -12,6 +12,9 @@ public partial class App : Application
 {
     const string NomeMutex = @"Local\Batuta.Unico";
     const string NomeEvento = @"Local\Batuta.Mostrar";
+    const string NomeSair = @"Local\Batuta.Sair";
+    EventWaitHandle? _sair;
+    long _ultimoToque = Environment.TickCount64;
     Mutex? _mutex;
     EventWaitHandle? _mostrar;
     Bandeja? _bandeja;
@@ -30,9 +33,11 @@ public partial class App : Application
         {
             _mutex = new Mutex(true, NomeMutex, out var primeiro);
             _mostrar = new EventWaitHandle(false, EventResetMode.AutoReset, NomeEvento);
+            _sair = new EventWaitHandle(false, EventResetMode.AutoReset, NomeSair);
             if (!primeiro)
             {
-                _mostrar.Set(); // já está aberto: traz a janela
+                if (args.Contains("--sair")) _sair.Set(); // Batuta.exe --sair fecha o que está aberto
+                else _mostrar.Set(); // já está aberto: traz a janela
                 Vigia.SaidaLimpa();
                 Shutdown();
                 return;
@@ -76,20 +81,38 @@ public partial class App : Application
         saude.Tick += (_, _) => { saude.Stop(); SaudeDaVersao.MarcarSaudavel(); };
         saude.Start();
 
-        // Atualização: 30 s depois de abrir e a cada 4 horas
+        // Atualização: 30 s depois de abrir e a cada 4 horas. O Batuta vive na bandeja e quase nunca fecha: a versão
+        // baixada entra sozinha quando ninguém mexe no passador há 10 minutos e a janela está fechada (reabre na bandeja).
+        s.TeclaVista += _ => _ultimoToque = Environment.TickCount64;
         var atualiza = new DispatcherTimer { Interval = TimeSpan.FromSeconds(30) };
         atualiza.Tick += async (_, _) =>
         {
-            atualiza.Interval = TimeSpan.FromHours(4);
-            if (s.Config.Ajustes.AtualizacaoAutomatica) await s.Atualizador.Verificar();
+            atualiza.Interval = TimeSpan.FromMinutes(15);
+            if (!s.Config.Ajustes.AtualizacaoAutomatica) return;
+            if (!s.Atualizador.Pronta && (DateTime.Now - _ultimaProcura).TotalHours >= 4)
+            {
+                _ultimaProcura = DateTime.Now;
+                await s.Atualizador.Verificar();
+            }
+            if (s.Atualizador.Pronta && Environment.TickCount64 - _ultimoToque > 10 * 60_000 && _janela?.IsVisible != true)
+            {
+                Log.Escrever($"atualização: instalando a {s.Atualizador.NovaVersao} (passador parado, janela fechada)");
+                s.Atualizador.AplicarAgora();
+            }
         };
         atualiza.Start();
+        new Thread(() =>
+        {
+            if (_sair!.WaitOne()) Dispatcher.BeginInvoke(Sair);
+        }) { IsBackground = true, Name = "sair" }.Start();
 
         new Thread(() =>
         {
             while (_mostrar!.WaitOne()) Dispatcher.BeginInvoke(Trazer);
         }) { IsBackground = true, Name = "mostrar" }.Start();
     }
+
+    DateTime _ultimaProcura = DateTime.MinValue;
 
     void Trazer()
     {
@@ -115,6 +138,7 @@ public partial class App : Application
         Servicos.Atual?.Dispose();
         _mutex?.Dispose();
         _mostrar?.Dispose();
+        _sair?.Dispose();
         base.OnExit(e);
     }
 }

@@ -138,8 +138,7 @@ public sealed unsafe class MotorDeEntrada : IDisposable
         if (ap.Simulado) return int.TryParse(ap.Pid, out var n) && _simuladores.TryGetValue(n, out var id) ? ModeloPorId(id) : null;
         var conhecido = cfg.Aparelhos.FirstOrDefault(a => a.Chave.Equals(ap.Chave, StringComparison.OrdinalIgnoreCase));
         if (conhecido is not null) return conhecido.Ativo ? ModeloPorId(conhecido.ModeloId) : null;
-        var c = _catalogo.Modelos.FirstOrDefault(m => m.Ids.Any(i => i.Pid is not null && i.Casa(ap.Vid, ap.Pid)));
-        return c;
+        return _catalogo.Reconhecer(ap.Vid, ap.Pid, ap.NomeDePassador);
     }
 
     Modelo? ModeloPorId(string id) => _catalogo.PorId(id) ?? _cfg.ModelosAprendidos.FirstOrDefault(m => m.Id == id);

@@ -213,3 +213,15 @@ public class CatalogoTestes
         Assert.Equal("olá", m.Toque!.Passos![0].Valor);
     }
 }
+
+public class ReceptorCompartilhadoTestes
+{
+    [Fact]
+    public void ReceptorBoltSoViraSpotlightSeONomeDisser()
+    {
+        var c = Catalogo.Ler(Path.Combine(AppContext.BaseDirectory, "catalogo", "modelos.json"));
+        Assert.Null(c.Reconhecer("046D", "C548", nomeDePassador: false));            // teclado num receptor Bolt: não toca
+        Assert.Equal("logitech-spotlight-2", c.Reconhecer("046D", "C548", true)!.Id);
+        Assert.Equal("logitech-r400", c.Reconhecer("046D", "C52D", false)!.Id);      // receptor só de passador
+    }
+}

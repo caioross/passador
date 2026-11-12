@@ -15,7 +15,8 @@
         },
         {
           "vid": "046D",
-          "pid": "C538"
+          "pid": "C538",
+          "compartilhado": true
         }
       ],
       "botoes": [
@@ -252,6 +253,7 @@
         {
           "vid": "046D",
           "pid": "C548",
+          "compartilhado": true,
           "nota": "receptor Bolt"
         },
         {

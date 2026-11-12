@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <!-- No PC de desenvolvimento, bin/obj vão para E:\Cache (uma pasta por cópia do repositório, para as worktrees
        não pisarem umas nas outras); no GitHub Actions ficam no padrão. -->
   <PropertyGroup>
@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Company>Caio Rossi</Company>
     <Product>Batuta</Product>
     <Authors>Caio Rossi</Authors>

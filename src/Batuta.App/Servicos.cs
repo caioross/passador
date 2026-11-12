@@ -75,7 +75,7 @@ public sealed class Servicos : IDisposable
         foreach (var a in Motor.Conectados.Where(a => !a.Simulado))
         {
             if (Config.Aparelhos.Any(c => c.Chave.Equals(a.Chave, StringComparison.OrdinalIgnoreCase))) continue;
-            var m = Catalogo.Candidatos(a.Vid, a.Pid).FirstOrDefault(x => x.Ids.Any(i => i.Pid is not null && i.Casa(a.Vid, a.Pid)));
+            var m = Catalogo.Reconhecer(a.Vid, a.Pid, a.NomeDePassador);
             if (m is null) continue;
             Config.Aparelhos.Add(new AparelhoConhecido { Chave = a.Chave, ModeloId = m.Id, Apelido = a.Produto });
             Log.Escrever($"aparelho reconhecido: {a.Chave} = {m.NomeCompleto}");

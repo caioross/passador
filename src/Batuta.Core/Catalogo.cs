@@ -9,6 +9,11 @@ public sealed class IdUsb
     public string Vid { get; set; } = "";
     public string? Pid { get; set; }
     public string? Nota { get; set; }
+    /// <summary>
+    /// Receptor que a marca usa também em teclado e mouse (Logi Bolt, por exemplo): o Batuta só reconhece sozinho se o
+    /// nome do aparelho disser que é passador; senão, só pela escolha da pessoa. Evita tomar o teclado de alguém.
+    /// </summary>
+    public bool Compartilhado { get; set; }
 
     public bool Casa(string vid, string pid) =>
         string.Equals(Vid, vid, StringComparison.OrdinalIgnoreCase) &&
@@ -87,6 +92,13 @@ public sealed class Catalogo
         [.. Modelos.Where(m => m.Ids.Any(i => i.Pid is not null && i.Casa(vid, pid)))
             .Concat(Modelos.Where(m => m.Ids.Any(i => i.Pid is null && i.Casa(vid, pid))))
             .Distinct()];
+
+    /// <summary>
+    /// O modelo que o Batuta pode assumir SOZINHO para este aparelho: PID exato e, se o receptor é compartilhado com
+    /// teclado e mouse, só quando o nome do produto diz que é passador.
+    /// </summary>
+    public Modelo? Reconhecer(string vid, string pid, bool nomeDePassador) =>
+        Modelos.FirstOrDefault(m => m.Ids.Any(i => i.Pid is not null && i.Casa(vid, pid) && (!i.Compartilhado || nomeDePassador)));
 
     public IEnumerable<string> Marcas => Modelos.Select(m => m.Marca).Distinct().Order(StringComparer.CurrentCulture);
 }

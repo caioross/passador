@@ -6,6 +6,8 @@ ação para um toque, outra para dois toques e outra para segurar, e tudo muda s
 frente (PowerPoint, Google Slides, Keynote no navegador, PDF, YouTube, OBS). Só os botões do passador mudam: o teclado
 do computador fica igual.
 
+![Tela Controle](docs/capturas/01-controle.png)
+
 Pedido 277 do Livro de Pedidos. A técnica (Raw Input, gancho WH_KEYBOARD, gestos, catálogo) está em
 [docs/TECNICA.md](docs/TECNICA.md).
 
