@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 566" width="140" height="566">
+<defs>
+  <linearGradient id="corpo" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#0b0b0e"/><stop offset="0.16" stop-color="#2c2b33"/>
+    <stop offset="0.34" stop-color="#1b1a20"/><stop offset="0.82" stop-color="#121116"/><stop offset="1" stop-color="#050506"/>
+  </linearGradient>
+  <linearGradient id="corpoClaro" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#26262c"/><stop offset="0.2" stop-color="#5a5a64"/>
+    <stop offset="0.45" stop-color="#3a3a42"/><stop offset="1" stop-color="#16161a"/>
+  </linearGradient>
+  <linearGradient id="brilho" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="botao" cx="0.38" cy="0.3" r="0.85">
+    <stop offset="0" stop-color="#3d3c45"/><stop offset="0.7" stop-color="#232228"/><stop offset="1" stop-color="#16151a"/>
+  </radialGradient>
+  <radialGradient id="botaoCinza" cx="0.38" cy="0.3" r="0.9">
+    <stop offset="0" stop-color="#9c9ca6"/><stop offset="0.75" stop-color="#6c6c76"/><stop offset="1" stop-color="#4a4a52"/>
+  </radialGradient>
+  <radialGradient id="laranja" cx="0.38" cy="0.3" r="0.9">
+    <stop offset="0" stop-color="#ffb066"/><stop offset="0.6" stop-color="#ff7a1a"/><stop offset="1" stop-color="#c2500a"/>
+  </radialGradient>
+  <radialGradient id="laser" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#ff5a4a"/><stop offset="1" stop-color="#7a1010"/>
+  </radialGradient>
+  <radialGradient id="ledVerde" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#b6ffcf"/><stop offset="0.5" stop-color="#2fd36b"/><stop offset="1" stop-color="#2fd36b" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="ledAzul" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#d6e6ff"/><stop offset="0.45" stop-color="#3d7bff"/><stop offset="1" stop-color="#3d7bff" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#050507"/><stop offset="1" stop-color="#121218"/>
+  </linearGradient>
+</defs>
+<rect x="36" y="18" width="68" height="530" rx="34" fill="url(#corpoClaro)" stroke="#000000" stroke-width="1.5"/><path d="M46 46 C42 80 42 120 42 200 L42 510 C44 524 48 532 54 536 L52 200 C52 120 52 80 56 50 Z" fill="url(#brilho)" opacity="0.9"/>
+
+<g data-botao="laser"><circle cx="70" cy="96" r="22" fill="url(#laranja)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/></g>
+<g data-botao="mouse"><circle cx="70" cy="156" r="17" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(62.00 148.00) scale(0.6667)" fill="none" stroke="#e9e7ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></g></g>
+<g data-botao="voltar"><circle cx="70" cy="206" r="16" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(62.00 198.00) scale(0.6667)" fill="none" stroke="#e9e7ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 L9 12 L15 6"/></g></g>
+<g data-botao="avancar"><circle cx="70" cy="252" r="16" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(62.00 244.00) scale(0.6667)" fill="none" stroke="#e9e7ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18 L15 12 L9 6"/></g></g>
+</svg>

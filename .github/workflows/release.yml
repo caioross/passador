@@ -1,0 +1,42 @@
+# Lança uma versão: envie uma tag vX.Y.Z (com as notas em docs/novidades/X.Y.Z.md).
+# Compila o gancho nativo (MSVC do runner), roda os testes, gera o pacote do Velopack (com o delta da anterior) e
+# publica o Release com o instalador. O espelho.yml leva o release para a b75; os PCs instalados se atualizam sozinhos.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Gancho, testes, pacote e publicação
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: ./build.ps1 -Versao "$env:TAG" -Publicar
+
+      - name: Notas da versão
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          $versao = $env:TAG.TrimStart("v")
+          $notas = "docs/novidades/$versao.md"
+          if (Test-Path $notas) { gh release edit $env:TAG --notes-file $notas }

@@ -1,0 +1,13 @@
+bin/
+obj/
+artifacts/
+*.user
+.vs/
+dist/
+.build/
+Releases/
+*.part
+.claude/
+tests/**/saida/
+native/saida/
+docs/capturas/_tmp/

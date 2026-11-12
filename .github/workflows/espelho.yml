@@ -1,0 +1,71 @@
+# Leva o release para o espelho da b75 (https://clarify-atualizacoes.caiorossi.com/batuta), de onde o Batuta instalado
+# se atualiza: o repositório é privado e o programa não tem chave do GitHub. A b75 baixa os arquivos direto do GitHub
+# com o GITHUB_TOKEN deste job (só leitura, morre quando o job acaba); o job espera a cópia terminar e confere a versão.
+# Roda depois de cada Release, todo dia (reconcilia: release apagado aqui faz o espelho voltar para o anterior) e à mão.
+# Molde: espelho.yml do Clarify Avaliador. O grupo "batuta" do espelho só mexe neste app (BATUTA_ESPELHO_TOKEN).
+name: Espelho na b75
+
+on:
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+  schedule:
+    - cron: "23 9 * * *" # 06:23 em Brasília
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: espelho
+  cancel-in-progress: false
+
+jobs:
+  espelho:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ESPELHO: https://clarify-atualizacoes.caiorossi.com
+      APP: batuta
+    steps:
+      - name: Pede a cópia e espera terminar
+        env:
+          SEGREDO: ${{ secrets.BATUTA_ESPELHO_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          esperado=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName -q .tagName 2>/dev/null | sed 's/^v//' || true)
+          if [ -z "$esperado" ]; then echo "::notice::nenhum release ainda: nada a espelhar"; exit 0; fi
+          echo "release mais novo no GitHub: $esperado"
+          umask 077
+          cabecalho=$(mktemp)
+          trap 'rm -f "$cabecalho"' EXIT
+          printf 'Authorization: Bearer %s\n' "$SEGREDO" > "$cabecalho"
+          resposta=$(jq -n --arg app "$APP" --arg t "$GH_TOKEN" '{app: $app, token: $t}' |
+            curl -sS --fail-with-body -X POST "$ESPELHO/espelhar" -H @"$cabecalho" \
+              -H 'Content-Type: application/json' --data-binary @-)
+          echo "$resposta"
+          inicio=$(jq -r .pedido_em <<<"$resposta")
+          for tentativa in $(seq 1 100); do
+            sleep 15
+            estado=$(curl -sS --fail-with-body -H @"$cabecalho" "$ESPELHO/estado")
+            linha=$(jq -r --arg a "$APP" --argjson i "$inicio" '.[$a] // {} |
+              if .rodando == true then "rodando"
+              elif (.falhou_em // 0) >= $i then "falhou \(.erro)"
+              elif (.copiado_em // 0) >= $i then "ok \(.versao)"
+              else "esperando" end' <<<"$estado")
+            echo "$APP: $linha"
+            case "$linha" in
+              falhou*) echo "::error::a b75 não conseguiu copiar: $linha"; exit 1 ;;
+              "ok $esperado") echo "espelho na versão $esperado"; exit 0 ;;
+              ok*) echo "::error::o espelho ficou em ${linha#ok }, mas o GitHub está em $esperado"; exit 1 ;;
+            esac
+          done
+          echo "::error::a cópia não terminou em 25 minutos"
+          exit 1
+
+      - name: Confere de fora (o que o programa vê)
+        run: |
+          set -euo pipefail
+          curl -sS --fail-with-body "$ESPELHO/$APP/releases.win.json" | jq -r '.Assets[] | "\(.Version) \(.Type) \(.FileName)"'

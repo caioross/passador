@@ -1,0 +1,1145 @@
+{
+  "versao": 1,
+  "modelos": [
+    {
+      "id": "logitech-r400",
+      "marca": "Logitech",
+      "nome": "R400",
+      "desenho": "r400",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "046D",
+          "pid": "C52D",
+          "nota": "receptor do R400 (o mesmo do R700 e do R800)"
+        },
+        {
+          "vid": "046D",
+          "pid": "C538"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ],
+          "segurar": "alterna F5 e Esc a cada toque"
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "Ponto"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "conferido",
+      "fontes": [
+        "https://derickrethans.nl/logitech-r400.html",
+        "https://raw.githubusercontent.com/systemd/systemd/main/hwdb.d/60-keyboard.hwdb",
+        "http://www.linux-usb.org/usb.ids"
+      ],
+      "notas": "O botão Iniciar alterna F5 e Esc a cada toque: o próprio aparelho guarda o estado."
+    },
+    {
+      "id": "logitech-r800",
+      "marca": "Logitech",
+      "nome": "R800",
+      "desenho": "r800",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "046D",
+          "pid": "C52D",
+          "nota": "mesmo receptor do R400"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ],
+          "segurar": "alterna F5 e Esc a cada toque"
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "Ponto"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser verde",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "cronometro",
+          "nome": "Cronômetro",
+          "papel": "cronometro",
+          "envia": [],
+          "soHardware": "Cronômetro do visor: funciona só no aparelho."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://derickrethans.nl/logitech-r400.html",
+        "https://raw.githubusercontent.com/systemd/systemd/main/hwdb.d/60-keyboard.hwdb",
+        "http://www.linux-usb.org/usb.ids",
+        "https://support.logi.com/hc/en-hk/articles/360023466813-R800-Technical-Specifications"
+      ],
+      "notas": "Teclas iguais às do R400 (mesmo receptor). Visor com cronômetro e vibração, sem nada pelo USB."
+    },
+    {
+      "id": "logitech-r500s",
+      "marca": "Logitech",
+      "nome": "R500s",
+      "desenho": "r500s",
+      "conexao": "Receptor USB 2.4 GHz e Bluetooth",
+      "ids": [
+        {
+          "vid": "046D",
+          "nota": "PID do receptor não publicado"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ]
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://support.logi.com/hc/en-us/articles/4410244898071-Specification-R500s-Laser-Presentation-Remote"
+      ],
+      "notas": "Segurar Avançar inicia e segurar Voltar escurece só com o programa da Logitech; aqui o Batuta faz isso sozinho."
+    },
+    {
+      "id": "logitech-spotlight",
+      "marca": "Logitech",
+      "nome": "Spotlight",
+      "desenho": "spotlight",
+      "conexao": "Receptor USB 2.4 GHz e Bluetooth",
+      "ids": [
+        {
+          "vid": "046D",
+          "pid": "C53E",
+          "nota": "receptor"
+        },
+        {
+          "vid": "046D",
+          "pid": "B503",
+          "nota": "Bluetooth"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "foco",
+          "nome": "Destaque",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "O Windows vê este botão como mouse (o cursor segue a mão)."
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "Right"
+          ]
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "Left"
+          ]
+        }
+      ],
+      "confianca": "conferido",
+      "fontes": [
+        "https://github.com/jahnf/Projecteur",
+        "https://support.logi.com/hc/en-gb/articles/360023303034-Logitech-Spotlight-Presenter-Technical-Specifications"
+      ],
+      "notas": "Segurar e o efeito de holofote são do protocolo HID++ da Logitech (fase 2)."
+    },
+    {
+      "id": "logitech-spotlight-2",
+      "marca": "Logitech",
+      "nome": "Spotlight 2",
+      "desenho": "spotlight",
+      "conexao": "Receptor Logi Bolt e Bluetooth",
+      "ids": [
+        {
+          "vid": "046D",
+          "pid": "C548",
+          "nota": "receptor Bolt"
+        },
+        {
+          "vid": "046D",
+          "pid": "B506",
+          "nota": "Bluetooth"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "foco",
+          "nome": "Destaque",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "O Windows vê este botão como mouse."
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "Right"
+          ]
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "Left"
+          ]
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://github.com/jahnf/Projecteur"
+      ]
+    },
+    {
+      "id": "kensington-laser",
+      "marca": "Kensington",
+      "nome": "Wireless Presenter com laser",
+      "desenho": "kensington",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "047D",
+          "pid": "2012",
+          "nota": "Wireless Presenter with Laser Pointer"
+        },
+        {
+          "vid": "047D",
+          "pid": "2010",
+          "nota": "Wireless Presentation Remote"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids"
+      ],
+      "notas": "IDs conferidos; teclas estimadas pelo padrão do mercado."
+    },
+    {
+      "id": "kensington-expert",
+      "marca": "Kensington",
+      "nome": "Expert Presenter",
+      "desenho": "kensington",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "047D"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser verde",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado"
+    },
+    {
+      "id": "baseus-orange-dot",
+      "marca": "Baseus",
+      "nome": "Orange Dot",
+      "desenho": "baseus",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "ABC8",
+          "pid": "CA08",
+          "nota": "aparece como iTing BaseusPresent"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "mouse",
+          "nome": "Mouse no ar",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "O Windows vê este botão como mouse."
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ]
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ]
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://github.com/jahnf/Projecteur/discussions/217"
+      ]
+    },
+    {
+      "id": "exbom-laser",
+      "marca": "Exbom",
+      "nome": "Passador com laser",
+      "desenho": "exbom",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ],
+          "segurar": "alguns clones mandam apertar e soltar sem repetir"
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ],
+          "segurar": "alguns clones mandam apertar e soltar sem repetir"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "referencia": "29.png",
+      "notas": "A Exbom não publica o ID nem as teclas; formato do R400. Se algo não bater, use o modo aprender."
+    },
+    {
+      "id": "multilaser-caneta",
+      "marca": "Multilaser",
+      "nome": "Caneta passadora",
+      "desenho": "caneta-laranja",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ]
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser (botão laranja)",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "referencia": "32.png",
+      "notas": "Sem ID publicado. Modo aprender confirma em segundos."
+    },
+    {
+      "id": "knup-passador",
+      "marca": "Knup",
+      "nome": "Passador com laser",
+      "desenho": "r400-generico",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ],
+          "segurar": "alguns clones mandam apertar e soltar sem repetir"
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ],
+          "segurar": "alguns clones mandam apertar e soltar sem repetir"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado"
+    },
+    {
+      "id": "generico-r400",
+      "marca": "Genérico",
+      "nome": "Passador 2.4G (tipo R400)",
+      "desenho": "r400-generico",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "0C45",
+          "pid": "6900",
+          "nota": "W 2.4G Presenter"
+        },
+        {
+          "vid": "0C45",
+          "pid": "8101",
+          "nota": "AVATTO H100 / August WP200"
+        },
+        {
+          "vid": "2571",
+          "pid": "4109",
+          "nota": "AVATTO i10 Pro"
+        },
+        {
+          "vid": "2312",
+          "pid": "863D",
+          "nota": "August LP315"
+        },
+        {
+          "vid": "69A7",
+          "pid": "9803",
+          "nota": "August LP310"
+        },
+        {
+          "vid": "1D57",
+          "pid": "0006",
+          "nota": "Xenta RC Laser Pointer"
+        },
+        {
+          "vid": "05B8",
+          "pid": "3126",
+          "nota": "Sysgration APT-905"
+        },
+        {
+          "vid": "05B8",
+          "pid": "3223",
+          "nota": "ISY"
+        },
+        {
+          "vid": "348F",
+          "pid": "2322",
+          "nota": "ISY"
+        },
+        {
+          "vid": "1894",
+          "pid": "5641",
+          "nota": "Topseed TSAM-004"
+        },
+        {
+          "vid": "1784",
+          "pid": "0014",
+          "nota": "Presenter IV Air"
+        },
+        {
+          "vid": "1EA7",
+          "pid": "0002",
+          "nota": "PowerPointer (chip de clone)"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ],
+          "segurar": "alguns clones mandam apertar e soltar sem repetir"
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ],
+          "segurar": "alguns clones mandam apertar e soltar sem repetir"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "referencia": "33.png",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids",
+        "https://linux-hardware.org/?view=search&name=presenter"
+      ],
+      "notas": "IDs conferidos nas listas públicas; teclas pelo padrão dos clones (alguns trocam para setas)."
+    },
+    {
+      "id": "anel-3-botoes",
+      "marca": "Genérico",
+      "nome": "Anel de 3 botões",
+      "desenho": "anel-3",
+      "conexao": "Bluetooth ou receptor USB",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "cima",
+          "nome": "Cima",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Up"
+          ]
+        },
+        {
+          "id": "baixo",
+          "nome": "Baixo",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Down"
+          ]
+        },
+        {
+          "id": "sol",
+          "nome": "Sol",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        }
+      ],
+      "confianca": "estimado",
+      "referencia": "30.png",
+      "notas": "Anéis de TikTok mandam toque na tela em vez de tecla (fase 2). Os de slide mandam Page Up e Page Down."
+    },
+    {
+      "id": "genius-ring",
+      "marca": "Genius",
+      "nome": "Ring Presenter",
+      "desenho": "anel-3",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "0458",
+          "pid": "00F1"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "cima",
+          "nome": "Cima",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Up"
+          ]
+        },
+        {
+          "id": "baixo",
+          "nome": "Baixo",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Down"
+          ]
+        },
+        {
+          "id": "sol",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids"
+      ]
+    },
+    {
+      "id": "anel-5-botoes",
+      "marca": "Genérico",
+      "nome": "Anel de 5 botões com laser",
+      "desenho": "anel-5",
+      "conexao": "Receptor USB-C 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "tela-preta",
+          "nome": "Tela",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ]
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "referencia": "31.png"
+    },
+    {
+      "id": "norwii-n95",
+      "marca": "Norwii",
+      "nome": "N95 (visor, Tab, volume)",
+      "desenho": "visor-tab",
+      "conexao": "Receptor USB 2.4 GHz e Bluetooth",
+      "ids": [
+        {
+          "vid": "3243",
+          "pid": "0382",
+          "nota": "N95s, receptor"
+        },
+        {
+          "vid": "3243",
+          "pid": "03A2",
+          "nota": "N95s, Bluetooth"
+        },
+        {
+          "vid": "3243"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "cima",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Up"
+          ]
+        },
+        {
+          "id": "baixo",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Down"
+          ]
+        },
+        {
+          "id": "direita",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "esquerda",
+          "nome": "Lupa",
+          "papel": "lupa",
+          "envia": [],
+          "soHardware": "Lupa do programa do fabricante; não chega como tecla."
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "caneta",
+          "nome": "Caneta",
+          "papel": "caneta",
+          "envia": [],
+          "soHardware": "Caneta do programa do fabricante."
+        },
+        {
+          "id": "tab",
+          "nome": "Tab",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Alt+Tab"
+          ],
+          "segurar": "segurar = Alt+Tab"
+        },
+        {
+          "id": "girar",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B",
+            "Ponto"
+          ]
+        },
+        {
+          "id": "mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ],
+          "segurar": "muda sem parar"
+        },
+        {
+          "id": "menos",
+          "nome": "Volume −",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ],
+          "segurar": "muda sem parar"
+        }
+      ],
+      "confianca": "comunidade",
+      "referencia": "34.png",
+      "fontes": [
+        "https://www.manualslib.com/manual/3775216/Norwii-N76.html"
+      ],
+      "notas": "Segurar Avançar e Voltar juntos por 3 s troca o modo de teclas do aparelho (Page Up/Down, setas, rolagem)."
+    },
+    {
+      "id": "norwii-caneta",
+      "marca": "Norwii",
+      "nome": "Caneta com visor (N26/N29)",
+      "desenho": "caneta-visor",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "3243",
+          "pid": "0122"
+        },
+        {
+          "vid": "3243",
+          "pid": "0111"
+        },
+        {
+          "vid": "3243",
+          "pid": "0131"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "foco",
+          "nome": "Destaque",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "Holofote digital do programa do fabricante."
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Up"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Down"
+          ]
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        }
+      ],
+      "confianca": "estimado",
+      "referencia": "35.png",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids"
+      ]
+    },
+    {
+      "id": "doosl-caneta",
+      "marca": "Doosl",
+      "nome": "Caneta fina",
+      "desenho": "caneta-fina",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "8EA3",
+          "pid": "A02C",
+          "nota": "Wireless Presenter Receiver"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Up"
+          ]
+        },
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Down"
+          ]
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "Shift+F5"
+          ]
+        }
+      ],
+      "confianca": "estimado",
+      "referencia": "36.png",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids"
+      ]
+    }
+  ]
+}
