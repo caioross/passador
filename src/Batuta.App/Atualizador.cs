@@ -18,10 +18,17 @@ namespace Batuta.App;
 /// </summary>
 public sealed class Atualizador
 {
-    public const string FeedPadrao = "https://clarify-atualizacoes.caiorossi.com/batuta";
+    /// <summary>
+    /// O espelho genérico da b75 (serviço "atualizacoes", porta 3114). Pela internet ele responde no host público quando
+    /// a virada M4 do espelho estiver feita (plano do Núcleo); até lá, em casa e pela tailnet, no host da LAN.
+    /// O Batuta tenta os dois, nesta ordem.
+    /// </summary>
+    public static readonly string[] FeedsPadrao =
+        ["https://clarify-atualizacoes.caiorossi.com/batuta", "http://atualizacoes.caiorossi.com/batuta"];
 
     /// <summary>BATUTA_FEED troca o endereço (uma pasta também vale), para testar sem tocar no espelho.</summary>
-    public static string Feed => Environment.GetEnvironmentVariable("BATUTA_FEED") is { Length: > 0 } f ? f : FeedPadrao;
+    public static string[] Feeds => Environment.GetEnvironmentVariable("BATUTA_FEED") is { Length: > 0 } f ? [f] : FeedsPadrao;
+    public static string Feed => Feeds[0];
 
     static readonly HttpClient Http = new() { Timeout = TimeSpan.FromSeconds(30) };
     readonly UpdateManager? _um;
@@ -45,7 +52,7 @@ public sealed class Atualizador
     }
 
     static UpdateManager Gerente(bool permitirDescer) =>
-        new(new FonteEspelho(Feed, SaudeDaVersao.Ruins), new UpdateOptions { AllowVersionDowngrade = permitirDescer });
+        new(new FonteEspelho(Feeds, SaudeDaVersao.Ruins), new UpdateOptions { AllowVersionDowngrade = permitirDescer });
 
     void Definir(string s)
     {
@@ -126,31 +133,49 @@ public sealed class Atualizador
 
     static async Task<IReadOnlyCollection<string>> Recolhidas()
     {
-        try
+        foreach (var feed in Feeds)
         {
-            var json = Directory.Exists(Feed)
-                ? await File.ReadAllTextAsync(Path.Combine(Feed, "recolhidas.json"))
-                : await Http.GetStringAsync(Feed.TrimEnd('/') + "/recolhidas.json");
-            return JsonSerializer.Deserialize<string[]>(json) ?? [];
+            try
+            {
+                var json = Directory.Exists(feed)
+                    ? await File.ReadAllTextAsync(Path.Combine(feed, "recolhidas.json"))
+                    : await Http.GetStringAsync(feed.TrimEnd('/') + "/recolhidas.json");
+                return JsonSerializer.Deserialize<string[]>(json) ?? [];
+            }
+            catch { }
         }
-        catch { return []; }
+        return [];
     }
 }
 
-/// <summary>A fonte do Velopack: o espelho da b75 (ou uma pasta, para teste), sem as versões que caíram neste PC.</summary>
-sealed class FonteEspelho(string feed, Func<IReadOnlyCollection<string>> ruins) : IUpdateSource
+/// <summary>
+/// A fonte do Velopack: o primeiro espelho que responder (ou uma pasta, para teste), sem as versões que caíram neste PC.
+/// O download sai do mesmo espelho que deu a lista.
+/// </summary>
+sealed class FonteEspelho(string[] feeds, Func<IReadOnlyCollection<string>> ruins) : IUpdateSource
 {
-    readonly IUpdateSource _fonte = Directory.Exists(feed) ? new SimpleFileSource(new DirectoryInfo(feed)) : new SimpleWebSource(feed);
+    readonly IUpdateSource[] _fontes = [.. feeds.Select(f => Directory.Exists(f) ? (IUpdateSource)new SimpleFileSource(new DirectoryInfo(f)) : new SimpleWebSource(f))];
+    IUpdateSource? _usada;
 
     public async Task<VelopackAssetFeed> GetReleaseFeed(IVelopackLogger logger, string? appId, string channel,
         Guid? stagingId = null, VelopackAsset? latestLocalRelease = null)
     {
-        var lista = await _fonte.GetReleaseFeed(logger, appId, channel, stagingId, latestLocalRelease);
-        var fora = ruins();
-        return new VelopackAssetFeed { Assets = [.. lista.Assets.Where(a => !fora.Contains(a.Version.ToString()))] };
+        Exception? ultimo = null;
+        foreach (var f in _fontes)
+        {
+            try
+            {
+                var lista = await f.GetReleaseFeed(logger, appId, channel, stagingId, latestLocalRelease);
+                _usada = f;
+                var fora = ruins();
+                return new VelopackAssetFeed { Assets = [.. lista.Assets.Where(a => !fora.Contains(a.Version.ToString()))] };
+            }
+            catch (Exception ex) { ultimo = ex; }
+        }
+        throw ultimo ?? new InvalidOperationException("nenhum espelho respondeu");
     }
 
     public Task DownloadReleaseEntry(IVelopackLogger logger, VelopackAsset releaseEntry, string localFile,
         Action<int> progress, CancellationToken cancelToken = default) =>
-        _fonte.DownloadReleaseEntry(logger, releaseEntry, localFile, progress, cancelToken);
+        (_usada ?? _fontes[0]).DownloadReleaseEntry(logger, releaseEntry, localFile, progress, cancelToken);
 }

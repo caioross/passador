@@ -11,7 +11,7 @@ namespace Batuta.App.Paginas;
 public sealed class PaginaAjustes : ScrollViewer, IPagina
 {
     readonly Servicos _s;
-    readonly StackPanel _c = new() { Margin = new Thickness(48, 40, 48, 40), MaxWidth = 860, HorizontalAlignment = HorizontalAlignment.Left };
+    readonly StackPanel _c = new() { Margin = new Thickness(48, 4, 48, 40), MaxWidth = 860, HorizontalAlignment = HorizontalAlignment.Left };
     readonly TextBlock _status = T("", "Explica");
     readonly TextBlock _gancho = T("", "Explica");
     readonly DispatcherTimer _gravar = new() { Interval = TimeSpan.FromMilliseconds(400) };
@@ -20,6 +20,7 @@ public sealed class PaginaAjustes : ScrollViewer, IPagina
     {
         _s = s;
         Content = _c;
+        Margin = new Thickness(0, 36, 0, 0);
         VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
         _gravar.Tick += (_, _) => { _gravar.Stop(); _s.Salvar(); };
         s.Atualizador.Mudou += () => Dispatcher.BeginInvoke(() => _status.Text = s.Atualizador.Status);
@@ -43,11 +44,11 @@ public sealed class PaginaAjustes : ScrollViewer, IPagina
 
         Secao("setas", "Como o Batuta troca as teclas");
         _c.Children.Add(Ficha("Só o passador (recomendado)", "bloqueio", a.Bloqueio == ModoBloqueio.PorAparelho, () => { a.Bloqueio = ModoBloqueio.PorAparelho; Gravar(); }));
-        _c.Children.Add(T("O teclado do computador continua igual: só as teclas que vêm do passador mudam.", "Rotulo", 12.5, margem: new Thickness(4, 0, 0, 12)));
+        _c.Children.Add(T("O teclado do computador continua igual: só as teclas que vêm do passador mudam.", "Rotulo", 12.5, margem: new Thickness(0, 0, 0, 12)));
         _c.Children.Add(Ficha("Modo simples", "bloqueio", a.Bloqueio == ModoBloqueio.Simples, () => { a.Bloqueio = ModoBloqueio.Simples; Gravar(); }));
-        _c.Children.Add(T("Reserva para programas em que o modo recomendado não pega: a tecla configurada muda venha de onde vier, inclusive do teclado.", "Rotulo", 12.5, margem: new Thickness(4, 0, 0, 12)));
+        _c.Children.Add(T("Reserva para programas em que o modo recomendado não pega: a tecla configurada muda venha de onde vier, inclusive do teclado.", "Rotulo", 12.5, margem: new Thickness(0, 0, 0, 12)));
         _gancho.Text = _s.Motor.DetalheGancho;
-        _gancho.Margin = new Thickness(4, 4, 0, 30);
+        _gancho.Margin = new Thickness(0, 4, 0, 30);
         _c.Children.Add(_gancho);
 
         Secao("liga", "Com o Windows");
@@ -83,7 +84,7 @@ public sealed class PaginaAjustes : ScrollViewer, IPagina
     {
         var ic = Icone.Criar(icone, 18);
         ic.Margin = new Thickness(0, 0, 12, 0);
-        System.Windows.Documents.TextElement.SetForeground(ic, P("Ambar"));
+        System.Windows.Documents.TextElement.SetForeground(ic, P("Texto2"));
         _c.Children.Add(new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 14), Children = { ic, T(titulo, "Subtitulo") } });
     }
 

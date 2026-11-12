@@ -149,7 +149,9 @@ def exbom():
     corpo = corpo_path(d) + brilho_lateral("M60 40 C48 70 46 120 50 200 L56 470 C58 500 66 520 76 530 L64 200 C60 120 62 70 74 44 Z")
     extras = ('<rect x="96" y="14" width="28" height="7" rx="3" fill="#5a0c0c"/>' + led(110, 58)
               + '<path d="M70 330 L150 330" stroke="#000000" stroke-opacity="0.5" stroke-width="1.5"/>'
-              + "".join(f'<path d="M78 {y} L142 {y}" stroke="#ffffff" stroke-opacity="0.05" stroke-width="2"/>' for y in range(360, 470, 10)))
+              + '<path d="M66 500 C80 506 140 506 154 500" fill="none" stroke="#000000" stroke-opacity="0.7" stroke-width="1.5"/>'
+              + '<path d="M68 503 C82 509 138 509 152 503" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>'
+              + '<rect x="92" y="520" width="36" height="8" rx="3" fill="#0a0a0c" stroke="#ffffff" stroke-opacity="0.06"/>')
     b = [
         botao("laser", circulo(110, 94, 18, "url(#botao)"), icone("laser", 110, 94, 18, cor="#ff6a5a")),
         botao("voltar", retang(50, 126, 54, 76, 16), icone("esq", 77, 164, 24)),
@@ -260,18 +262,22 @@ def anel3():
 
 
 def anel5():
-    # Foto 31: cruz de quatro botões com o laser no centro, argola e receptor USB-C.
-    cx, cy, r1, r2 = 130, 128, 30, 82
-    corpo = ('<path d="M66 236 C40 290 64 346 130 348 C196 346 220 290 194 236" fill="none" stroke="#0e0e12" stroke-width="24" stroke-linecap="round"/>'
-             + "".join(f'<path d="M{70 + i * 4} {262 + i * 12} C{60 + i * 3} {290 + i * 9} {90} {330} {130} {336 - i}" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="2"/>' for i in range(4))
-             + corpo_path("M130 26 C200 26 228 70 228 130 C228 196 196 244 130 244 C64 244 32 196 32 130 C32 70 60 26 130 26 Z")
+    # Foto 31: corpo oval mais largo que alto, cruz de quatro botões com o laser no centro, nervuras na pega,
+    # alça fina e o receptor USB-C na lateral.
+    cx, cy, r1, r2 = 130, 122, 28, 76
+    alca = "M86 236 C64 282 80 334 130 336 C180 334 196 282 174 236"
+    corpo = (f'<path d="{alca}" fill="none" stroke="#0e0e12" stroke-width="15" stroke-linecap="round"/>'
+             f'<path d="{alca}" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1.5"/>'
+             + corpo_path("M130 24 C206 24 236 62 236 126 C236 172 226 206 206 230 C186 252 160 262 130 262 C100 262 74 252 54 230 C34 206 24 172 24 126 C24 62 54 24 130 24 Z")
+             + brilho_lateral("M46 70 C34 100 32 140 40 180 C46 204 56 222 68 234 C56 200 50 160 54 120 C56 98 62 82 70 72 Z")
+             + "".join(f'<path d="M{78 + i * 2} {214 + i * 9} C110 {222 + i * 9} 150 {222 + i * 9} {182 - i * 2} {214 + i * 9}" fill="none" stroke="#000000" stroke-opacity="0.55" stroke-width="1.6"/>'
+                       f'<path d="M{78 + i * 2} {215.5 + i * 9} C110 {223.5 + i * 9} 150 {223.5 + i * 9} {182 - i * 2} {215.5 + i * 9}" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>' for i in range(4))
              + f'<circle cx="{cx}" cy="{cy}" r="{r2 + 6}" fill="#08080a"/>')
-    extras = '<rect x="226" y="140" width="8" height="26" rx="3" fill="#2a2a30"/>' + led(56, 192, "ledAzul", 6)
+    extras = '<rect x="234" y="120" width="8" height="26" rx="3" fill="#2a2a30"/>' + led(60, 180, "ledAzul", 6)
     segs = [("tela-preta", 225, 315, "tela"), ("avancar", -45, 45, "dir"), ("iniciar", 45, 135, "telaplay"), ("voltar", 135, 225, "esq")]
     b = [botao(i, segmento(cx, cy, r1, r2, a0, a1, folga=3.5), icone(ic, *centro_seg(cx, cy, r1, r2, a0, a1), 22)) for i, a0, a1, ic in segs]
     b.append(botao("laser", circulo(cx, cy, r1 - 4, "url(#botao)"), icone("laser", cx, cy, 20, cor="#ff4a3a")))
-    return svg(260, 372, corpo, b, extras)
-
+    return svg(260, 352, corpo, b, extras)
 
 def r400_generico():
     # Foto 33: corpo em "amendoim", botões cinza em volta do laser triangular.
@@ -294,7 +300,7 @@ def visor_tab():
     corpo = corpo_path(d) + brilho_lateral("M52 40 C46 70 46 110 46 190 L52 560 C54 580 58 592 64 598 L58 190 C56 110 58 70 62 44 Z")
     cx, cy, r1, r2 = 100, 170, 21, 52
     extras = ('<rect x="62" y="40" width="76" height="40" rx="8" fill="url(#visor)" stroke="#3a3a44" stroke-width="1.2"/>'
-              '<text x="100" y="70" font-family="Consolas" font-weight="bold" font-size="26" fill="#ff5a4a" text-anchor="middle">88</text>'
+              '<text x="100" y="70" font-family="Consolas" font-weight="bold" font-size="26" fill="#e8e6e3" fill-opacity="0.88" text-anchor="middle">88</text>'
               + led(100, 98, r=6) + f'<circle cx="{cx}" cy="{cy}" r="{r2 + 5}" fill="#08080a"/>'
               + '<path d="M66 352 L134 352" stroke="#000000" stroke-opacity="0.5" stroke-width="1.5"/>')
     segs = [("cima", 225, 315, "cima"), ("direita", -45, 45, "tela"), ("baixo", 45, 135, "baixo"), ("esquerda", 135, 225, "lupa")]

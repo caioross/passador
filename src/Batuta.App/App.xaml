@@ -11,7 +11,7 @@
       <Color x:Key="CorPainel2">#28222F</Color>
       <Color x:Key="CorTexto">#EEE9F3</Color>
       <Color x:Key="CorTexto2">#A9A1B5</Color>
-      <Color x:Key="CorTexto3">#7A7287</Color>
+      <Color x:Key="CorTexto3">#958EA1</Color>
       <Color x:Key="CorAmbar">#F4A940</Color>
       <Color x:Key="CorVioleta">#6C52BE</Color>
       <Color x:Key="CorInfo">#7FA9DA</Color>
@@ -162,14 +162,14 @@
       <Style x:Key="Ficha" TargetType="RadioButton">
         <Setter Property="Foreground" Value="{StaticResource Texto2}"/>
         <Setter Property="FontFamily" Value="{StaticResource Corpo}"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="12.5"/>
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Margin" Value="0,0,6,6"/>
+        <Setter Property="Margin" Value="0,0,5,6"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
           <Setter.Value>
             <ControlTemplate TargetType="RadioButton">
-              <Border x:Name="b" CornerRadius="16" Padding="13,6" Background="Transparent" BorderThickness="1" BorderBrush="{StaticResource Borda}">
+              <Border x:Name="b" CornerRadius="16" Padding="10,5" Background="Transparent" BorderThickness="1" BorderBrush="{StaticResource Borda}">
                 <ContentPresenter VerticalAlignment="Center"/>
               </Border>
               <ControlTemplate.Triggers>
@@ -206,7 +206,7 @@
                 <Trigger Property="IsChecked" Value="True">
                   <Setter TargetName="trilho" Property="Background" Value="{StaticResource Ambar}"/>
                   <Setter TargetName="bola" Property="HorizontalAlignment" Value="Right"/>
-                  <Setter TargetName="bola" Property="Fill" Value="#1B1408"/>
+                  <Setter TargetName="bola" Property="Fill" Value="#FFF7EC"/>
                 </Trigger>
                 <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="trilho" Property="Opacity" Value="0.85"/></Trigger>
               </ControlTemplate.Triggers>

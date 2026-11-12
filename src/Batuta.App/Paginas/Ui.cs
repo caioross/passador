@@ -52,8 +52,8 @@ static class Ui
         var conteudo = new StackPanel { Orientation = Orientation.Horizontal };
         if (icone is not null)
         {
-            var ic = Icone.Criar(icone, 14);
-            ic.Margin = new Thickness(0, 0, 7, 0);
+            var ic = Icone.Criar(icone, 12);
+            ic.Margin = new Thickness(0, 0, 6, 0);
             conteudo.Children.Add(ic);
         }
         var tb = new TextBlock { Text = texto };

@@ -43,10 +43,10 @@ public sealed class PaginaControle : Grid, IPagina
         _janela = janela;
         _modelo = s.ModeloEmFoco;
         ColumnDefinitions.Add(new ColumnDefinition());
-        ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(440) });
+        ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(430) });
 
         // ---------- palco
-        var esquerda = new Grid { Margin = new Thickness(44, 34, 24, 22) };
+        var esquerda = new Grid { Margin = new Thickness(48, 34, 24, 22) };
         esquerda.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         esquerda.RowDefinitions.Add(new RowDefinition());
         esquerda.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -54,8 +54,8 @@ public sealed class PaginaControle : Grid, IPagina
         var cabeca = new DockPanel();
         _testar = Interruptor("Testar no desenho", false, LigarTeste);
         _testar.ToolTip = "Aperte os botões do desenho como se fosse o passador: o motor faz a ação de verdade.";
-        _testar.VerticalAlignment = VerticalAlignment.Top;
-        _testar.Margin = new Thickness(0, 12, 120, 0);
+        _testar.VerticalAlignment = VerticalAlignment.Bottom;
+        _testar.Margin = new Thickness(0, 0, 0, 2);
         DockPanel.SetDock(_testar, Dock.Right);
         cabeca.Children.Add(_testar);
         var nomes = new StackPanel { Children = { _marca, _titulo, _estado } };
@@ -70,7 +70,14 @@ public sealed class PaginaControle : Grid, IPagina
         _palco.BotaoEscolhido += Escolher;
         _palco.BotaoTestado += Testado;
 
-        var rodape = new StackPanel { Children = { _recebido, _ticker } };
+        var historico = new DockPanel { Margin = new Thickness(0, 6, 0, 0) };
+        var rotHist = T("Últimos toques", "Rotulo", 12.5, "Texto3", new Thickness(0, 0, 18, 0));
+        rotHist.VerticalAlignment = VerticalAlignment.Center;
+        DockPanel.SetDock(rotHist, Dock.Left);
+        historico.Children.Add(rotHist);
+        historico.Children.Add(_ticker);
+        _ticker.OpacityMask = new LinearGradientBrush([new GradientStop(Colors.Black, 0.82), new GradientStop(Colors.Transparent, 1)], new Point(0, 0), new Point(1, 0));
+        var rodape = new StackPanel { Children = { _recebido, new Border { Height = 1, Background = P("Borda"), Margin = new Thickness(0, 0, 0, 10) }, historico } };
         Grid.SetRow(rodape, 2);
         esquerda.Children.Add(rodape);
         _recebido.Child = new StackPanel
@@ -162,7 +169,14 @@ public sealed class PaginaControle : Grid, IPagina
         _estado.Children.Add(new TextBlock
         {
             Text = Confianca(_modelo.Confianca), FontSize = 12, Foreground = P("Texto3"), VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(6, 0, 0, 0), ToolTip = _modelo.Notas,
+            Margin = new Thickness(6, 0, 0, 0),
+            ToolTip = (_modelo.Confianca switch
+            {
+                "conferido" => "As teclas de cada botão foram conferidas em fonte técnica.",
+                "comunidade" => "As teclas vêm de relatos de quem tem o aparelho.",
+                "aprendido" => "Você ensinou este modelo na tela Aprender.",
+                _ => "As teclas foram deduzidas pelo formato e por aparelhos parecidos. Se algum botão não acender ao apertar, ensine o seu na tela Aprender.",
+            }) + (_modelo.Notas is { } n ? "\n\n" + n : ""),
         });
     }
 
@@ -171,7 +185,7 @@ public sealed class PaginaControle : Grid, IPagina
         "conferido" => "Teclas conferidas",
         "comunidade" => "Teclas por relatos",
         "aprendido" => "Ensinado neste PC",
-        _ => "Teclas estimadas",
+        _ => "Teclas a confirmar",
     };
 
     void MontarPerfis()
@@ -180,7 +194,7 @@ public sealed class PaginaControle : Grid, IPagina
         foreach (var p in _s.Config.Perfis.Where(p => p.Ativo))
         {
             var emUso = p.Id == _s.PerfilEmUso;
-            UIElement? ponto = emUso ? new Ellipse { Width = 6, Height = 6, Fill = P("Ok"), Margin = new Thickness(8, 1, 0, 0), VerticalAlignment = VerticalAlignment.Center } : null;
+            UIElement? ponto = emUso ? new Ellipse { Width = 6, Height = 6, Fill = P("Info"), Margin = new Thickness(8, 1, 0, 0), VerticalAlignment = VerticalAlignment.Center, ToolTip = "Em uso agora" } : null;
             var id = p.Id;
             var f = Ficha(p.Nome, "perfil-controle", id == _perfilEditado, () =>
             {
@@ -202,7 +216,7 @@ public sealed class PaginaControle : Grid, IPagina
         var m = Resolucao.MapaEfetivo(_s.Config.Perfis, PerfilEditado, _modelo.Id, b);
         var toque = m?.Toque is { } t ? t.Descricao : "De fábrica: " + (b.Atalhos.FirstOrDefault() is var a && a.Vk != 0 ? a.Rotulo() : "?");
         var extras = (m?.TemDuplo == true ? 1 : 0) + (m?.TemSegurar == true ? 1 : 0);
-        return (b.Nome, extras > 0 ? $"{toque}  (+{extras})" : toque);
+        return (b.Nome, extras switch { 0 => toque, 1 => $"{toque}, e mais 1 gesto", _ => $"{toque}, e mais {extras} gestos" });
     }
 
     void Escolher(string id)
@@ -396,8 +410,17 @@ public sealed class PaginaControle : Grid, IPagina
         item.Children.Add(T(perfil, "Rotulo", 12, "Texto3"));
         _ticker.Children.Insert(0, item);
         while (_ticker.Children.Count > 3) _ticker.Children.RemoveAt(_ticker.Children.Count - 1);
-        for (var i = 0; i < _ticker.Children.Count; i++) ((FrameworkElement)_ticker.Children[i]).Opacity = 1 - i * 0.3;
+        for (var i = 0; i < _ticker.Children.Count; i++) ((FrameworkElement)_ticker.Children[i]).Opacity = 1 - i * 0.28;
         item.BeginAnimation(OpacityProperty, new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(250)));
+    }
+
+    /// <summary>Abrir a tela já editando um perfil (vindo da tela Perfis).</summary>
+    public void EditarPerfil(string perfilId)
+    {
+        _perfilEditado = perfilId;
+        MontarPerfis();
+        _palco.AtualizarLegendas();
+        MontarInspetor();
     }
 
     /// <summary>Para as capturas da documentação: escolhe perfil e botão e mostra ações como se o passador tivesse sido usado.</summary>

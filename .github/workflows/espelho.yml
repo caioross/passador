@@ -3,14 +3,13 @@
 # com o GITHUB_TOKEN deste job (só leitura, morre quando o job acaba); o job espera a cópia terminar e confere a versão.
 # Roda depois de cada Release, todo dia (reconcilia: release apagado aqui faz o espelho voltar para o anterior) e à mão.
 # Molde: espelho.yml do Clarify Avaliador. O grupo "batuta" do espelho só mexe neste app (BATUTA_ESPELHO_TOKEN).
+#
+# DESLIGADO ATÉ A VIRADA M4 DO ESPELHO (plano do Núcleo, servidor/atualizacoes/migracao): hoje o host público ainda
+# aponta para o espelho antigo da Clarify (porta 3112), que não conhece o Batuta. Até lá a cópia sai do PC da casa:
+# tools/espelhar.ps1. Depois da M4, trocar o "on:" abaixo pelos gatilhos do Avaliador (workflow_run + schedule).
 name: Espelho na b75
 
 on:
-  workflow_run:
-    workflows: [Release]
-    types: [completed]
-  schedule:
-    - cron: "23 9 * * *" # 06:23 em Brasília
   workflow_dispatch:
 
 permissions:

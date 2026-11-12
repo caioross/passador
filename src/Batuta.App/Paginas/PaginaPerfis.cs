@@ -13,6 +13,7 @@ namespace Batuta.App.Paginas;
 public sealed class PaginaPerfis : Grid, IPagina
 {
     readonly Servicos _s;
+    readonly JanelaPrincipal _janela;
     readonly StackPanel _lista = new();
     readonly StackPanel _editor = new();
     readonly TextBlock _frente = T("", "Rotulo", 12.5);
@@ -21,9 +22,10 @@ public sealed class PaginaPerfis : Grid, IPagina
     string _escolhido = "powerpoint";
     (string proc, string titulo) _ultimaFrente;
 
-    public PaginaPerfis(Servicos s)
+    public PaginaPerfis(Servicos s, JanelaPrincipal janela)
     {
         _s = s;
+        _janela = janela;
         ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(400) });
         ColumnDefinitions.Add(new ColumnDefinition());
         var esq = new StackPanel { Margin = new Thickness(48, 40, 24, 30) };
@@ -156,7 +158,34 @@ public sealed class PaginaPerfis : Grid, IPagina
         _frente.TextWrapping = TextWrapping.Wrap;
         _editor.Children.Add(_frente);
         Frente();
-        _editor.Children.Add(T("Os botões deste perfil se configuram na tela Controle, escolhendo o perfil em cima do desenho.", "Explica", margem: new Thickness(0, 22, 0, 0)));
+        _editor.Children.Add(T("O que este perfil muda", "Subtitulo", 16, margem: new Thickness(0, 28, 0, 10)));
+        var mudancas = Mudancas(p).ToList();
+        if (mudancas.Count == 0) _editor.Children.Add(T("Nada ainda: todos os botões ficam como no Padrão.", "Explica"));
+        foreach (var (botao, gesto, faz) in mudancas)
+        {
+            var g = new Grid { Margin = new Thickness(0, 0, 0, 6) };
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(190) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
+            g.ColumnDefinitions.Add(new ColumnDefinition());
+            var b1 = T(botao, tamanho: 13.5);
+            b1.FontWeight = FontWeights.Bold;
+            g.Children.Add(b1);
+            var g2 = T(gesto, "Rotulo", 13);
+            Grid.SetColumn(g2, 1);
+            g.Children.Add(g2);
+            var f3 = T(faz, tamanho: 13.5, cor: "Ambar");
+            Grid.SetColumn(f3, 2);
+            g.Children.Add(f3);
+            _editor.Children.Add(g);
+        }
+        var configurar = Botao("Configurar os botões deste perfil", "BotaoPrimario", "controle", () =>
+        {
+            _janela.PaginaDe<PaginaControle>("Controle")?.EditarPerfil(p.Id);
+            _janela.Ir("Controle");
+        });
+        configurar.HorizontalAlignment = HorizontalAlignment.Left;
+        configurar.Margin = new Thickness(0, 16, 0, 0);
+        _editor.Children.Add(configurar);
         if (!PerfisProntos.Todos().Any(x => x.Id == p.Id))
         {
             var apagar = Botao("Apagar este perfil", "BotaoFantasma", "lixo", () =>
@@ -170,6 +199,20 @@ public sealed class PaginaPerfis : Grid, IPagina
             apagar.HorizontalAlignment = HorizontalAlignment.Left;
             apagar.Margin = new Thickness(-8, 18, 0, 0);
             _editor.Children.Add(apagar);
+        }
+    }
+
+    /// <summary>As mudanças do perfil em linhas de gente: (botão, gesto, o que faz).</summary>
+    IEnumerable<(string, string, string)> Mudancas(Perfil p)
+    {
+        var nomes = new Dictionary<string, string> { ["avancar"] = "Avançar", ["voltar"] = "Voltar", ["iniciar"] = "Iniciar apresentação", ["tela-preta"] = "Tela preta", ["cima"] = "Cima", ["baixo"] = "Baixo", ["tab"] = "Tab", ["mais"] = "Volume +", ["menos"] = "Volume −" };
+        foreach (var (chave, m) in p.Mapas.OrderBy(k => k.Key.StartsWith("botao:") ? 1 : 0))
+        {
+            var nome = chave.StartsWith("papel:") ? nomes.GetValueOrDefault(chave[6..], chave[6..])
+                : _s.ModeloPorId(chave[6..].Split('/')[0]) is { } mo && mo.BotaoPorId(chave.Split('/')[^1]) is { } bt ? $"{bt.Nome} ({mo.Nome})" : chave[6..];
+            if (m.Toque is { } t) yield return (nome, "Um toque", t.Descricao);
+            if (m.Duplo is { } d) yield return (nome, "Dois toques", d.Descricao);
+            if (m.Segurar is { } s) yield return (nome, m.ModoSegurar switch { ModoSegurar.Repetir => "Segurar, repete", ModoSegurar.Enquanto => "Enquanto segura", _ => "Segurar" }, s.Descricao);
         }
     }
 

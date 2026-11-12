@@ -13,7 +13,7 @@ public sealed class PaginaCatalogo : ScrollViewer, IPagina
 {
     readonly Servicos _s;
     readonly JanelaPrincipal _janela;
-    readonly StackPanel _conteudo = new() { Margin = new Thickness(48, 40, 48, 40) };
+    readonly StackPanel _conteudo = new() { Margin = new Thickness(48, 4, 48, 40) };
     readonly StackPanel _lista = new();
     readonly TextBox _busca = new() { Width = 300, HorizontalAlignment = HorizontalAlignment.Left };
 
@@ -22,6 +22,7 @@ public sealed class PaginaCatalogo : ScrollViewer, IPagina
         _s = s;
         _janela = janela;
         VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+        Margin = new Thickness(0, 36, 0, 0); // a barra de rolagem começa abaixo dos botões da janela
         Content = _conteudo;
         _conteudo.Children.Add(T("Qual é o seu passador?", "Titulo"));
         _conteudo.Children.Add(T("Escolha a marca e o modelo: o Batuta mostra o desenho e o que cada botão manda. Se o seu não estiver aqui, a página Aprender descobre sozinha.",
@@ -57,8 +58,7 @@ public sealed class PaginaCatalogo : ScrollViewer, IPagina
                 _lista.Children.Add(Destaque(c.Modelo, $"Ligado agora: {c.Aparelho.Produto ?? "passador"} ({c.Aparelho.Vid}:{c.Aparelho.Pid})",
                     "Reconhecido pelo código do receptor. Se não for este, escolha o certo abaixo."));
             else if (_marca is null)
-                _lista.Children.Add(Destaque(emFoco, "O que está na tela Controle agora",
-                    "Nenhum passador ligado. Ligue o receptor: se ele estiver no catálogo, o Batuta reconhece sozinho."));
+                _lista.Children.Add(Faixa("Nenhum passador ligado agora. Ligue o receptor: se ele estiver aqui, o Batuta reconhece sozinho; se não, ensine em Aprender."));
             foreach (var d in _s.PassadoresDesconhecidos)
                 _lista.Children.Add(Aviso($"Ligado e fora do catálogo: {d.Produto ?? "aparelho"} ({d.Vid}:{d.Pid})",
                     "Escolha abaixo um modelo parecido ou ensine os botões em Aprender."));
@@ -113,7 +113,7 @@ public sealed class PaginaCatalogo : ScrollViewer, IPagina
                 T(m.Marca, "Rotulo", 12, "Texto3"),
                 T(m.Nome, tamanho: 15, margem: new Thickness(0, 1, 0, 2)),
                 T(m.Conexao, "Rotulo", 12),
-                T(PaginaControle.Confianca(m.Confianca) + "   " + ids, "Rotulo", 11.5, "Texto3", new Thickness(0, 6, 0, 0)),
+                T(PaginaControle.Confianca(m.Confianca), "Rotulo", 12, "Texto3", new Thickness(0, 6, 0, 0)),
             },
         };
         ((TextBlock)info.Children[2]).FontWeight = FontWeights.Bold;
@@ -123,7 +123,7 @@ public sealed class PaginaCatalogo : ScrollViewer, IPagina
             Width = 226, Margin = new Thickness(0, 0, 16, 16), Padding = new Thickness(18), CornerRadius = new CornerRadius(14),
             Background = P("Painel"), BorderThickness = new Thickness(escolhido ? 1.5 : 1),
             BorderBrush = escolhido ? P("Ambar") : P("Borda"), Cursor = Cursors.Hand, Child = info, ClipToBounds = true,
-            ToolTip = m.Notas, Focusable = true,
+            ToolTip = $"Código do receptor: {ids}" + (m.Notas is { } n ? "\n\n" + n : ""), Focusable = true,
         };
         b.MouseEnter += (_, _) => { if (!escolhido) b.BorderBrush = P("BordaForte"); };
         b.MouseLeave += (_, _) => { if (!escolhido) b.BorderBrush = P("Borda"); };
@@ -152,6 +152,19 @@ public sealed class PaginaCatalogo : ScrollViewer, IPagina
         c.Margin = new Thickness(0, 0, 0, 28);
         c.BorderBrush = P("AmbarMedio");
         c.Effect = new DropShadowEffect { Color = Color.FromRgb(0xF4, 0xA9, 0x40), BlurRadius = 40, ShadowDepth = 0, Opacity = 0.12 };
+        return c;
+    }
+
+    static Border Faixa(string texto)
+    {
+        var ic = Icone.Criar("usb", 18);
+        ic.Margin = new Thickness(0, 0, 14, 0);
+        System.Windows.Documents.TextElement.SetForeground(ic, P("Info"));
+        var t = T(texto, "Explica");
+        t.VerticalAlignment = VerticalAlignment.Center;
+        var c = Ui.Cartao(new StackPanel { Orientation = Orientation.Horizontal, Children = { ic, t } }, new Thickness(18, 14, 18, 14));
+        c.Margin = new Thickness(0, 0, 0, 22);
+        c.HorizontalAlignment = HorizontalAlignment.Left;
         return c;
     }
 

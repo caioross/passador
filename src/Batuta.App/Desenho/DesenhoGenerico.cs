@@ -31,7 +31,7 @@ public static class DesenhoGenerico
         {
             var b = botoes[i];
             var y = topo + i * passo;
-            var ini = SecurityElement.Escape(Iniciais(b.Nome));
+            var ini = (i + 1).ToString();
             sb.Append($"<g data-botao=\"{SecurityElement.Escape(b.Id)}\"><circle cx=\"80\" cy=\"{F(y)}\" r=\"21\" fill=\"url(#botao)\" stroke=\"#000000\" stroke-opacity=\"0.6\" stroke-width=\"1.2\"/>");
             sb.Append($"<text x=\"80\" y=\"{F(y + 5)}\" font-family=\"Segoe UI\" font-weight=\"bold\" font-size=\"13\" fill=\"#e9e7ef\" text-anchor=\"middle\">{ini}</text></g>");
         }

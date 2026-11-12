@@ -22,6 +22,8 @@ public sealed class Palco : Grid
     readonly Grid _desenho = new();
     readonly Canvas _botoes = new();
     readonly Canvas _legendas = new();
+    readonly Canvas _linhas = new() { IsHitTestVisible = false };
+    readonly Canvas _frente = new() { IsHitTestVisible = false };
     readonly Dictionary<string, Path> _formas = [];
     readonly Dictionary<string, Path> _brilhos = [];
     readonly Dictionary<string, FrameworkElement> _rotulos = [];
@@ -50,7 +52,9 @@ public sealed class Palco : Grid
         _caixa.VerticalAlignment = VerticalAlignment.Center;
         _caixa.HorizontalAlignment = HorizontalAlignment.Center;
         Children.Add(_luz);
+        Children.Add(_linhas);   // as linhas passam POR TRÁS do aparelho: nunca riscam um botão
         Children.Add(_caixa);
+        Children.Add(_frente);   // a luz do refletor batendo no topo da peça
         Children.Add(_legendas);
         SizeChanged += (_, _) => Dispatcher.BeginInvoke(Recompor, System.Windows.Threading.DispatcherPriority.Loaded);
     }
@@ -76,8 +80,9 @@ public sealed class Palco : Grid
             var b = m.BotaoPorId(id);
             var brilho = new Path
             {
-                Data = geo, Fill = new SolidColorBrush(Color.FromArgb(0xC0, Ambar.R, Ambar.G, Ambar.B)), Opacity = 0, IsHitTestVisible = false,
-                Effect = new DropShadowEffect { Color = Ambar, BlurRadius = 26, ShadowDepth = 0, Opacity = 1 },
+                Data = geo, Fill = new SolidColorBrush(Color.FromArgb(0x48, 0xFF, 0xEC, 0xCC)), Opacity = 0, IsHitTestVisible = false,
+                Stroke = new SolidColorBrush(Color.FromRgb(0xFF, 0xF1, 0xDC)), StrokeThickness = 1.6,
+                Effect = new DropShadowEffect { Color = Color.FromRgb(0xFF, 0xC9, 0x7A), BlurRadius = 30, ShadowDepth = 0, Opacity = 1 },
             };
             var forma = new Path
             {
@@ -133,8 +138,7 @@ public sealed class Palco : Grid
         var sel = id == _selecionado;
         var hover = f.IsMouseOver;
         f.Stroke = sel ? new SolidColorBrush(Ambar) : hover ? new SolidColorBrush(Color.FromArgb(0x90, 0xFF, 0xFF, 0xFF)) : null;
-        f.Fill = sel ? new SolidColorBrush(Color.FromArgb(0x2E, Ambar.R, Ambar.G, Ambar.B))
-            : hover ? new SolidColorBrush(Color.FromArgb(0x18, 0xFF, 0xFF, 0xFF)) : Brushes.Transparent;
+        f.Fill = hover && !sel ? new SolidColorBrush(Color.FromArgb(0x18, 0xFF, 0xFF, 0xFF)) : Brushes.Transparent;
         f.Effect = sel ? new DropShadowEffect { Color = Ambar, BlurRadius = 18, ShadowDepth = 0, Opacity = 0.9 } : null;
     }
 
@@ -184,8 +188,18 @@ public sealed class Palco : Grid
                 [new GradientStop(Color.FromArgb(0x1C, Ambar.R, Ambar.G, Ambar.B), 0), new GradientStop(Color.FromArgb(0x00, Ambar.R, Ambar.G, Ambar.B), 1)],
                 new Point(0, 0), new Point(0, 1)),
             Effect = new BlurEffect { Radius = 40 },
+            OpacityMask = new LinearGradientBrush([new GradientStop(Colors.Transparent, 0), new GradientStop(Colors.Black, 0.22)], new Point(0, 0), new Point(0, 1)),
         };
         _luz.Children.Add(facho);
+        _frente.Children.Clear();
+        var topo = new Ellipse
+        {
+            Width = r.Width * 0.9, Height = Math.Max(60, r.Height * 0.22),
+            Fill = new RadialGradientBrush([new GradientStop(Color.FromArgb(0x26, 0xFF, 0xC9, 0x7A), 0), new GradientStop(Colors.Transparent, 1)]),
+        };
+        Canvas.SetLeft(topo, cx - topo.Width / 2);
+        Canvas.SetTop(topo, r.Y - topo.Height * 0.15);
+        _frente.Children.Add(topo);
         var poca = new Ellipse
         {
             Width = r.Height * 1.05, Height = r.Height * 1.05,
@@ -196,17 +210,20 @@ public sealed class Palco : Grid
         _luz.Children.Add(poca);
         var chao = new Ellipse
         {
-            Width = Math.Max(120, r.Width * 1.1), Height = 26,
-            Fill = new RadialGradientBrush([new GradientStop(Color.FromArgb(0xB0, 0, 0, 0), 0), new GradientStop(Colors.Transparent, 1)]),
+            Width = Math.Max(120, r.Width * 0.9), Height = 22,
+            Fill = new RadialGradientBrush([new GradientStop(Color.FromArgb(0xC0, 0, 0, 0), 0), new GradientStop(Color.FromArgb(0x70, 0, 0, 0), 0.4),
+                new GradientStop(Color.FromArgb(0x20, 0, 0, 0), 0.75), new GradientStop(Colors.Transparent, 1)]),
+            Effect = new BlurEffect { Radius = 6 },
         };
         Canvas.SetLeft(chao, cx - chao.Width / 2);
-        Canvas.SetTop(chao, r.Bottom - 10);
+        Canvas.SetTop(chao, r.Bottom - 22);
         _luz.Children.Add(chao);
     }
 
     public void AtualizarLegendas()
     {
         _legendas.Children.Clear();
+        _linhas.Children.Clear();
         _rotulos.Clear();
         if (!MostrarLegendas || _modelo is null || Legenda is null || _caixa.ActualWidth < 1) return;
         var caixa = _caixa.TransformToAncestor(this).TransformBounds(new Rect(0, 0, _caixa.ActualWidth, _caixa.ActualHeight));
@@ -263,19 +280,27 @@ public sealed class Palco : Grid
             var (nome, faz) = Legenda!(b);
             var sel = b.Id == _selecionado;
             var yMeio = ys[i] + alturaRotulo / 2;
-            var inicio = new Point(esquerda ? br.Left + 2 : br.Right - 2, p.Y);
+            // A linha sai do centro do botão em reta até o cotovelo (por trás do aparelho: só aparece fora dele) e segue
+            // reta até a legenda. O ponto em cima do botão diz de qual botão é cada linha.
+            var inicio = p;
             var fim = new Point(esquerda ? xRotulo + largura + 6 : xRotulo - 6, yMeio);
-            var cor = sel ? Color.FromArgb(0xE0, Ambar.R, Ambar.G, Ambar.B) : Color.FromArgb(0x50, 0xFF, 0xFF, 0xFF);
+            var cor = sel ? Color.FromArgb(0xE0, Ambar.R, Ambar.G, Ambar.B) : Color.FromArgb(0x58, 0xFF, 0xFF, 0xFF);
             var linha = new Polyline
             {
-                Points = [inicio, new Point(cotovelo, p.Y), new Point(cotovelo + (esquerda ? -distancia * 0.3 : distancia * 0.3), yMeio), fim],
-                Stroke = new SolidColorBrush(cor), StrokeThickness = 1, IsHitTestVisible = false,
+                Points = [inicio, new Point(cotovelo, yMeio), fim],
+                Stroke = new SolidColorBrush(cor), StrokeThickness = sel ? 1.4 : 1, IsHitTestVisible = false,
             };
-            _legendas.Children.Add(linha);
-            var ponto = new Ellipse { Width = 5, Height = 5, Fill = new SolidColorBrush(cor), IsHitTestVisible = false };
-            Canvas.SetLeft(ponto, inicio.X - 2.5);
-            Canvas.SetTop(ponto, inicio.Y - 2.5);
+            _linhas.Children.Add(linha);
+            var ponto = new Ellipse
+            {
+                Width = 6, Height = 6, Fill = new SolidColorBrush(sel ? Ambar : Color.FromRgb(0xEE, 0xE9, 0xF3)), IsHitTestVisible = false,
+                Stroke = new SolidColorBrush(Color.FromArgb(0xA0, 0, 0, 0)), StrokeThickness = 1,
+            };
+            var borda = new Point(esquerda ? br.Left + Math.Min(8, br.Width / 4) : br.Right - Math.Min(8, br.Width / 4), p.Y);
+            Canvas.SetLeft(ponto, borda.X - 3);
+            Canvas.SetTop(ponto, borda.Y - 3);
             _legendas.Children.Add(ponto);
+            linha.Points[0] = borda;
 
             var t1 = new TextBlock
             {

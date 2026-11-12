@@ -38,8 +38,8 @@ public sealed class PaginaAprender : Grid, IPagina
         _s = s;
         _janela = janela;
         ColumnDefinitions.Add(new ColumnDefinition());
-        ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(500) });
-        var esq = new Grid { Margin = new Thickness(44, 34, 24, 24) };
+        ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(430) });
+        var esq = new Grid { Margin = new Thickness(48, 34, 24, 24) };
         esq.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         esq.RowDefinitions.Add(new RowDefinition());
         esq.Children.Add(new StackPanel
@@ -139,7 +139,7 @@ public sealed class PaginaAprender : Grid, IPagina
         _passos.Children.Clear();
 
         // 1. o aparelho
-        _passos.Children.Add(Passo(1, "Aperte um botão do passador", _aparelho is not null));
+        _passos.Children.Add(Passo(1, "Aperte um botão do passador", _aparelho is not null, _aparelho is null));
         if (_aparelho is null)
         {
             var anel = new Ellipse { Width = 46, Height = 46, Stroke = P("Ambar"), StrokeThickness = 2, HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(38, 6, 0, 20) };
@@ -167,7 +167,7 @@ public sealed class PaginaAprender : Grid, IPagina
         }
 
         // 2. os botões
-        _passos.Children.Add(Passo(2, "Aperte cada botão, um de cada vez", _aprendidos.Count >= 2));
+        _passos.Children.Add(Passo(2, "Aperte cada botão, um de cada vez", _aprendidos.Count >= 2, _aprendidos.Count < 2));
         _passos.Children.Add(T("Botão que alterna (como Iniciar, que manda F5 e depois Esc) aparece duas vezes: junte com o de cima.", "Rotulo", 12, "Texto3", new Thickness(38, 0, 0, 10)));
         for (var i = 0; i < _aprendidos.Count; i++)
         {
@@ -180,7 +180,7 @@ public sealed class PaginaAprender : Grid, IPagina
             linha.Children.Add(teclas);
             if (i > 0)
             {
-                var juntar = new Button { Style = S("BotaoFantasma"), Content = Icone.Criar("junto", 14), ToolTip = "É o mesmo botão que o de cima", Padding = new Thickness(6) };
+                var juntar = new Button { Style = S("BotaoFantasma"), Content = Icone.Criar("junto", 16), ToolTip = "Juntar com o de cima (é o mesmo botão)", Padding = new Thickness(6), Width = 34 };
                 juntar.Click += (_, _) =>
                 {
                     _aprendidos[idx - 1].Envia.AddRange(b.Envia);
@@ -192,12 +192,13 @@ public sealed class PaginaAprender : Grid, IPagina
             }
             var nome = new TextBox { Text = b.Nome };
             nome.TextChanged += (_, _) => { b.Nome = nome.Text; _palco.AtualizarLegendas(); };
+            if (i == 0) { var vago = new Border { Width = 34 }; DockPanel.SetDock(vago, Dock.Right); linha.Children.Add(vago); }
             linha.Children.Add(nome);
             _passos.Children.Add(linha);
         }
 
         // 3. salvar
-        _passos.Children.Add(Passo(3, "Dê um nome e salve", false));
+        _passos.Children.Add(Passo(3, "Dê um nome e salve", false, _aprendidos.Count >= 2));
         var nomes = new Grid { Margin = new Thickness(38, 0, 0, 12) };
         nomes.ColumnDefinitions.Add(new ColumnDefinition());
         nomes.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(10) });
@@ -223,18 +224,21 @@ public sealed class PaginaAprender : Grid, IPagina
         return t;
     }
 
-    static FrameworkElement Passo(int n, string texto, bool feito)
+    /// <summary>Passo feito: marca discreta; passo da vez: número em âmbar cheio; os outros: só o número.</summary>
+    static FrameworkElement Passo(int n, string texto, bool feito, bool daVez)
     {
         var num = new Border
         {
             Width = 26, Height = 26, CornerRadius = new CornerRadius(13), Margin = new Thickness(0, 0, 12, 0),
-            Background = feito ? P("Ambar") : System.Windows.Media.Brushes.Transparent, BorderBrush = P(feito ? "Ambar" : "BordaForte"), BorderThickness = new Thickness(1),
+            Background = daVez ? P("Ambar") : System.Windows.Media.Brushes.Transparent,
+            BorderBrush = P(daVez ? "Ambar" : "BordaForte"), BorderThickness = new Thickness(1),
             Child = feito
-                ? new Viewbox { Width = 12, Child = WithFg(Icone.Criar("check", 12), "#1B1408") }
-                : T(n.ToString(), tamanho: 12.5, cor: "Texto2"),
+                ? new Viewbox { Width = 12, Child = WithFg(Icone.Criar("check", 12), "#958EA1") }
+                : T(n.ToString(), tamanho: 12.5, cor: daVez ? null : "Texto2"),
         };
+        if (daVez && num.Child is TextBlock tn) tn.Foreground = new SolidColorBrush(Color.FromRgb(0x1B, 0x14, 0x08));
         if (num.Child is TextBlock tb) { tb.HorizontalAlignment = HorizontalAlignment.Center; tb.VerticalAlignment = VerticalAlignment.Center; }
-        var titulo = T(texto, "Subtitulo", 16);
+        var titulo = T(texto, "Subtitulo", 16, cor: daVez || feito ? null : "Texto2");
         titulo.VerticalAlignment = VerticalAlignment.Center;
         return new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 14, 0, 10), Children = { num, titulo } };
     }

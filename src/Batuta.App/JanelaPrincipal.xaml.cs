@@ -23,7 +23,7 @@ public partial class JanelaPrincipal : Window
         {
             ["Controle"] = () => new PaginaControle(s, this),
             ["Catálogo"] = () => new PaginaCatalogo(s, this),
-            ["Perfis"] = () => new PaginaPerfis(s),
+            ["Perfis"] = () => new PaginaPerfis(s, this),
             ["Aprender"] = () => new PaginaAprender(s, this),
             ["Ajustes"] = () => new PaginaAjustes(s),
         };
