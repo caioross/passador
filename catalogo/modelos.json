@@ -191,7 +191,7 @@
       "fontes": [
         "https://support.logi.com/hc/en-us/articles/4410244898071-Specification-R500s-Laser-Presentation-Remote"
       ],
-      "notas": "Segurar Avançar inicia e segurar Voltar escurece só com o programa da Logitech; aqui o Batuta faz isso sozinho."
+      "notas": "Segurar Avançar inicia e segurar Voltar escurece só com o programa da Logitech; aqui o Passador faz isso sozinho. PID a confirmar."
     },
     {
       "id": "logitech-spotlight",
@@ -247,7 +247,7 @@
       "id": "logitech-spotlight-2",
       "marca": "Logitech",
       "nome": "Spotlight 2",
-      "desenho": "spotlight",
+      "desenho": "spotlight-2",
       "conexao": "Receptor Logi Bolt e Bluetooth",
       "ids": [
         {
@@ -366,7 +366,7 @@
       "id": "kensington-expert",
       "marca": "Kensington",
       "nome": "Expert Presenter",
-      "desenho": "kensington",
+      "desenho": "kensington-expert",
       "conexao": "Receptor USB 2.4 GHz",
       "ids": [
         {
@@ -419,7 +419,8 @@
           "soHardware": "O laser é só luz: o botão não chega ao computador."
         }
       ],
-      "confianca": "estimado"
+      "confianca": "estimado",
+      "notas": "PID a confirmar."
     },
     {
       "id": "baseus-orange-dot",
@@ -530,7 +531,7 @@
       ],
       "confianca": "estimado",
       "referencia": "29.png",
-      "notas": "A Exbom não publica o ID nem as teclas; formato do R400. Se algo não bater, use o modo aprender."
+      "notas": "A Exbom não publica o ID nem as teclas; formato do R400. Se algo não bater, use o modo aprender. VID e PID a confirmar."
     },
     {
       "id": "multilaser-caneta",
@@ -578,13 +579,13 @@
       ],
       "confianca": "estimado",
       "referencia": "32.png",
-      "notas": "Sem ID publicado. Modo aprender confirma em segundos."
+      "notas": "Sem ID publicado. Modo aprender confirma em segundos. VID e PID a confirmar."
     },
     {
       "id": "knup-passador",
       "marca": "Knup",
       "nome": "Passador com laser",
-      "desenho": "r400-generico",
+      "desenho": "knup-passador",
       "conexao": "Receptor USB 2.4 GHz",
       "ids": [],
       "botoes": [
@@ -635,7 +636,8 @@
           "soHardware": "O laser é só luz: o botão não chega ao computador."
         }
       ],
-      "confianca": "estimado"
+      "confianca": "estimado",
+      "notas": "VID e PID a confirmar."
     },
     {
       "id": "generico-r400",
@@ -648,21 +650,6 @@
           "vid": "0C45",
           "pid": "6900",
           "nota": "W 2.4G Presenter"
-        },
-        {
-          "vid": "0C45",
-          "pid": "8101",
-          "nota": "AVATTO H100 / August WP200"
-        },
-        {
-          "vid": "2571",
-          "pid": "4109",
-          "nota": "AVATTO i10 Pro"
-        },
-        {
-          "vid": "2312",
-          "pid": "863D",
-          "nota": "August LP315"
         },
         {
           "vid": "69A7",
@@ -799,13 +786,13 @@
       ],
       "confianca": "estimado",
       "referencia": "30.png",
-      "notas": "Anéis de TikTok mandam toque na tela em vez de tecla (fase 2). Os de slide mandam Page Up e Page Down."
+      "notas": "Anéis de TikTok mandam toque na tela em vez de tecla (fase 2). Os de slide mandam Page Up e Page Down. VID e PID a confirmar."
     },
     {
       "id": "genius-ring",
       "marca": "Genius",
       "nome": "Ring Presenter",
-      "desenho": "anel-3",
+      "desenho": "genius-ring",
       "conexao": "Receptor USB 2.4 GHz",
       "ids": [
         {
@@ -899,7 +886,8 @@
         }
       ],
       "confianca": "estimado",
-      "referencia": "31.png"
+      "referencia": "31.png",
+      "notas": "VID e PID a confirmar."
     },
     {
       "id": "norwii-n95",
@@ -1013,7 +1001,10 @@
       "confianca": "comunidade",
       "referencia": "34.png",
       "fontes": [
-        "https://www.manualslib.com/manual/3775216/Norwii-N76.html"
+        "https://www.manualslib.com/manual/3775216/Norwii-N76.html",
+        "https://raw.githubusercontent.com/jahnf/Projecteur/develop/devices.conf",
+        "https://www.norwii.com/product/233.html",
+        "https://manuals.plus/norwii/n95s-ble-presentation-clicker-with-digital-pointer-manual.pdf"
       ],
       "notas": "Segurar Avançar e Voltar juntos por 3 s troca o modo de teclas do aparelho (Page Up/Down, setas, rolagem)."
     },
@@ -1142,6 +1133,2738 @@
       "fontes": [
         "http://www.linux-usb.org/usb.ids"
       ]
+    },
+    {
+      "id": "logitech-r700",
+      "marca": "Logitech",
+      "nome": "Professional Presenter R700",
+      "desenho": "logitech-r700",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "046D",
+          "pid": "C52D",
+          "nota": "ficha técnica da Logitech (046D_C52D) e usb.ids ('R700 Remote Presenter receiver'); é o mesmo receptor do R400"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "Ponto"
+          ]
+        },
+        {
+          "id": "cronometro",
+          "nome": "Cronômetro (play/pausa)",
+          "papel": "cronometro",
+          "envia": [],
+          "soHardware": "Liga e pausa o cronômetro do visor; não chega ao computador."
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "liga",
+          "nome": "Liga/desliga",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Chave do aparelho."
+        }
+      ],
+      "confianca": "conferido",
+      "fontes": [
+        "https://support.logi.com/hc/en-001/articles/360023465853-Logitech-Professional-Presenter-R700-Technical-Specifications",
+        "http://www.linux-usb.org/usb.ids",
+        "https://raw.githubusercontent.com/systemd/systemd/main/hwdb.d/60-keyboard.hwdb"
+      ],
+      "notas": "Teclas do receptor 046D:C52D conferidas no hwdb do systemd (Esc, F5 e ponto além de PageUp/PageDown); visor LCD com cronômetro, sinal e bateria; laser vermelho."
+    },
+    {
+      "id": "logitech-cordless-presenter",
+      "marca": "Logitech",
+      "nome": "Cordless 2.4 GHz Presenter",
+      "desenho": "logitech-cordless-presenter",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "046D",
+          "pid": "C515",
+          "nota": "usb.ids: 'Cordless 2.4 GHz Presenter Presentation remote control'"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "cronometro",
+          "nome": "Cronômetro",
+          "papel": "cronometro",
+          "envia": [],
+          "soHardware": "Ajusta o tempo do visor e o alerta por vibração; não chega ao computador."
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids",
+        "https://www.desertcart.lk/products/986028-logitech-2-4-ghz-cordless-presenter-black",
+        "https://www.computerwoche.de/article/2658255/praesentationen-fernsteuern.html"
+      ],
+      "notas": "Modelo antigo (anos 2000), ainda aparece usado. VID:PID conferido no usb.ids; as funções (tela preta, volume, laser, cronômetro com vibração) vêm de anúncios, as teclas exatas são estimadas."
+    },
+    {
+      "id": "kensington-ultimate-presenter-k75233",
+      "marca": "Kensington",
+      "nome": "Ultimate Presenter com ponteiro virtual (K75233)",
+      "desenho": "kensington-ultimate-presenter-k75233",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Botão frontal (tela preta)",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "ponteiro",
+          "nome": "Ponteiro virtual",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "Move um ponteiro desenhado pelo software KensingtonWorks com o giroscópio; o Windows vê movimento de mouse, não tecla."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://www.kensington.com/en-gb/News-Index---Blogs--Press-Center/Presentation-Tools--Tips-Blog/Unboxing-the-Ultimate-Presenter/",
+        "https://customer.kensington.com/us/us/s/k75233am/ultimate_presenter__with_virtual_pointer__k75233am_",
+        "https://www.challengeindustries.ca/eOfficeProducts/Kensington-Ultimate-Presenter-Wireless-Radio-Frequency-Black-1-Pack-USB-4-Button-s.html"
+      ],
+      "notas": "Quatro botões; a Kensington diz que avança e volta sem software e que o botão frontal vem como tela preta. VID e PID a confirmar (fabricante Kensington = 047D). Teclas estimadas. Fora de linha no site da Kensington."
+    },
+    {
+      "id": "kensington-si600",
+      "marca": "Kensington",
+      "nome": "Si600 Wireless Presenter with Laser Pointer (33374)",
+      "desenho": "kensington-si600",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://huntoffice.co.uk/kensington-si600-wireless-presenter-with-laser-pointer-presentation-remote-control-4-buttons-rf-33374eu-1255940.html",
+        "https://eezee.sg/product/kensington-presenter-remote-red-laser-presenter-k33374usa-74cce0c8cb",
+        "https://www.dateks.lv/en/cenas/adapteri/140130-kensington-kensington-si600-wireless-presenter-2-4ghz-width-20-mm-height-100-mm-depth-45-mm"
+      ],
+      "notas": "Quatro botões (avançar, voltar, tela preta, laser), nano receptor. VID e PID a confirmar: talvez o mesmo receptor do 047D:2012; a confirmar."
+    },
+    {
+      "id": "kensington-slimblade-presenter-mouse",
+      "marca": "Kensington",
+      "nome": "SlimBlade Presenter Mouse",
+      "desenho": "kensington-slimblade-presenter-mouse",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "047D",
+          "pid": "1077",
+          "nota": "usb.ids: 'SlimBlade Presenter Mouse'"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Clique direito / avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Clique esquerdo / voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "roda",
+          "nome": "Roda inclinável",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Roda de mouse; o Windows vê rolagem, não tecla."
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids",
+        "https://lanoc.org/review/input-devices/kensingtons-slim-blade-presenter-mouse",
+        "https://www.pocket-lint.com/review/3167/Kensingston-slim-blade-presenter-mouse"
+      ],
+      "notas": "Mouse fino que vira passador: no modo apresentação os cliques esquerdo e direito voltam e avançam (setas acendem). Teclas exatas no modo apresentação estimadas."
+    },
+    {
+      "id": "kensington-slimblade-presenter-media-mouse",
+      "marca": "Kensington",
+      "nome": "SlimBlade Presenter Media Mouse",
+      "desenho": "kensington-slimblade-presenter-media-mouse",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "047D",
+          "pid": "1075",
+          "nota": "usb.ids: 'SlimBlade Presenter Media Mouse'"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ]
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ]
+        },
+        {
+          "id": "play",
+          "nome": "Play/pausa",
+          "papel": "midia",
+          "envia": [
+            "MediaPlayPause"
+          ]
+        },
+        {
+          "id": "faixa-seguinte",
+          "nome": "Próxima faixa",
+          "papel": "midia-seguinte",
+          "envia": [
+            "MediaNext"
+          ]
+        },
+        {
+          "id": "faixa-anterior",
+          "nome": "Faixa anterior",
+          "papel": "midia-anterior",
+          "envia": [
+            "MediaPrev"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "modo",
+          "nome": "Chave de modo (embaixo)",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Troca mouse/música por apresentação; não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "http://www.linux-usb.org/usb.ids",
+        "https://www.nbrchive.net/xfa/notebook-news-and-reviews.13/Kensington%20SlimBlade%20Presenter%20Media%20Mouse%20review"
+      ],
+      "notas": "Mouse que vira ao contrário e tem controles de mídia de um lado; chave embaixo passa para o modo apresentação com laser. Disposição e teclas estimadas pelas resenhas."
+    },
+    {
+      "id": "targus-amp13",
+      "marca": "Targus",
+      "nome": "Laser Presentation Remote AMP13",
+      "desenho": "targus-amp13",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próximo slide",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Slide anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Slide show (toque inicia, segurar 2 s encerra)",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela em branco/escura",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "trava",
+          "nome": "KeyLock",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Trava os botões menos laser, avançar e voltar; o anel de LED fica vermelho. Não chega ao computador."
+        },
+        {
+          "id": "liga",
+          "nome": "Liga/desliga (segurar 3 s)",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Liga e desliga o aparelho; anel de LED verde."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://manualslib.mx/manual/221377/Targus-Amp13-A.html?page=3",
+        "https://www.manualslib.com/manual/791572/Targus-Amp13us.html",
+        "https://cdn.targus.com/web/uk/downloads/AMP13EU-003F-UG_030918.pdf"
+      ],
+      "notas": "Funções dos botões conferidas no manual; as teclas são estimadas. VID e PID a confirmar (há relato de presenter Targus com chip Sysgration/Agiler, VID 05B8, não conferido para este modelo)."
+    },
+    {
+      "id": "targus-amp16",
+      "marca": "Targus",
+      "nome": "Wireless Presenter with Laser Pointer AMP16",
+      "desenho": "targus-amp16",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próxima página",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Escape/Resume",
+          "papel": "iniciar",
+          "envia": [
+            "Esc",
+            "F5",
+            "Shift+F5"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela escura",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "conectar",
+          "nome": "Connect",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Refaz o pareamento com o receptor."
+        },
+        {
+          "id": "liga",
+          "nome": "Chave liga/desliga",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Chave do aparelho."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.manualslib.com/manual/1653119/Targus-Amp16b.html",
+        "https://Microcenter.com/quickView/606336/targus-wireless-usb-presenter-with-laser-pointer",
+        "https://www.ifixit.com/Device/Targus_AMP16US"
+      ],
+      "notas": "Botões conferidos no manual (laser, anterior/próxima, connect, escape/resume, tela escura, chave); a Micro Center fala em page up, page down, sair/retomar e escurecer. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "targus-amp17",
+      "marca": "Targus",
+      "nome": "Wireless Presenter with Cursor Control AMP17",
+      "desenho": "targus-amp17",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/sair",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "cursor",
+          "nome": "Joystick do cursor (apertar = clique)",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Move o cursor e clica; o Windows vê mouse, não tecla."
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "modo",
+          "nome": "Chave mouse/apresentação",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Troca o modo dos botões; não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://www.notice-facile.com/en/manual/367828/targus+amp17ca",
+        "https://manualmachine.com/targus/amp16ap/20177253-user-manual"
+      ],
+      "notas": "Versão do AMP16 com joystick de cursor e chave de modo. No modo mouse um dos botões vira clique esquerdo. Disposição e teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "targus-control-plus-amp067",
+      "marca": "Targus",
+      "nome": "Control Plus Dual Mode Antimicrobial Presenter with Laser (AMP067)",
+      "desenho": "targus-control-plus-amp067",
+      "conexao": "Receptor USB 2.4 GHz e Bluetooth",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar apresentação",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://us.targus.com/collections/wireless-presenters/products/control-plus-dual-mode-antimicrobial-presenter-with-laser-amp06704amgl"
+      ],
+      "notas": "Modelo atual da Targus, com Bluetooth e receptor (dual mode) e superfície antimicrobiana. Não consegui abrir a página (limite do site): botões e teclas estimados pelo padrão da marca. VID e PID a confirmar."
+    },
+    {
+      "id": "canon-pr10-g",
+      "marca": "Canon",
+      "nome": "PR10-G Wireless Presenter (laser verde)",
+      "desenho": "canon-pr10-g",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Play (iniciar/sair)",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser verde",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "trava",
+          "nome": "Lock",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Trava os botões para não passar slide sem querer."
+        },
+        {
+          "id": "cronometro",
+          "nome": "Cronômetro (LCD)",
+          "papel": "cronometro",
+          "envia": [],
+          "soHardware": "Liga o LCD e inicia ou pausa o cronômetro com aviso por vibração."
+        },
+        {
+          "id": "modo",
+          "nome": "Chave OFF / Keynote / PowerPoint",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Desliga ou escolhe o perfil de teclas (Mac ou Windows)."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.bhphotovideo.com/c/product/1271908-REG/canon_1343c002_wireless_presenter_remote.html",
+        "https://manualmachine.com/canon/pr10g/3139302-user-manual",
+        "https://www.usa.canon.com/support/p/pr10-g-wireless-presenter-remote"
+      ],
+      "notas": "Botões conferidos em anúncio e manual (dois grandes de slide, laser grande, lock, play, LCD com cronômetro e vibração, chave de modo). As teclas mudam com a chave; o perfil Keynote deve mandar setas. Teclas estimadas. VID e PID a confirmar (Canon = 04A9, nenhum presenter no usb.ids)."
+    },
+    {
+      "id": "canon-pr100-r",
+      "marca": "Canon",
+      "nome": "PR100-R Wireless Presenter",
+      "desenho": "canon-pr100-r",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próximo slide (page down)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Slide anterior (page up)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/encerrar",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta (botão branco)",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://canon.co.za/for_home/product_finder/presenters/pr100_r/specifications",
+        "https://www.manualslib.com/manual/1446194/Canon-Pr100-R.html",
+        "https://www.cdw.com/product/Canon-PR100-R-presentation-remote-control/4299222"
+      ],
+      "notas": "Ficha da Canon: próximo, anterior, iniciar/encerrar, tela preta; teclas de page up e page down. Usuário relata que o botão branco da esquerda alterna tela preta. VID e PID a confirmar."
+    },
+    {
+      "id": "canon-pr500-r",
+      "marca": "Canon",
+      "nome": "PR500-R Wireless Presenter",
+      "desenho": "canon-pr500-r",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próxima página",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/retomar",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Shift+F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser vermelho 635 nm",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "modo",
+          "nome": "Chave PowerPoint / Keynote",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Escolhe o perfil de teclas; não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "http://asia.canon/en/consumer/pr500-r/main/specification",
+        "https://ij.manual.canon/lpp/webmanual/WebPortal/pdf/PR500-R (ASA)_E-IM-3275.pdf"
+      ],
+      "notas": "Ficha da Canon: iniciar/retomar, próxima/anterior, tela preta, chave PowerPoint/Keynote, receptor guardado com ímã, 115 x 29 x 24 mm, 2 pilhas AAA. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "canon-pr1100-r",
+      "marca": "Canon",
+      "nome": "PR1100-R Wireless Presenter",
+      "desenho": "canon-pr1100-r",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próxima página",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/encerrar",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "http://asia.canon/en/consumer/pr1100-r/main/specification",
+        "https://www.canon.co.uk/business/products/presenters/pr1100-r/specifications/",
+        "https://manualmachine.com/canon/pr1100r/7674601-user-manual"
+      ],
+      "notas": "Caneta fina (135,5 x 22 x 22,5 mm, 1 AAA). A Canon lista page up/down, iniciar/encerrar, tela preta e volume, e avisa que Adobe Reader e Preview não aceitam iniciar e tela preta. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "norwii-n97s",
+      "marca": "Norwii",
+      "nome": "N97s BLE Presenter (alumínio)",
+      "desenho": "norwii-n97s",
+      "conexao": "Receptor USB 2.4 GHz e Bluetooth",
+      "ids": [
+        {
+          "vid": "3243",
+          "pid": "0342",
+          "nota": "Projecteur devices.conf: Norwii N97s BLE Presenter, receptor USB"
+        },
+        {
+          "vid": "3243",
+          "pid": "0352",
+          "nota": "Projecteur devices.conf: Norwii N97s BLE Presenter, Bluetooth"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte (segurar = tela preta)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "B"
+          ],
+          "segurar": "segurar manda tela preta"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior (segurar = tela cheia)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "F5",
+            "Esc"
+          ],
+          "segurar": "segurar alterna tela cheia"
+        },
+        {
+          "id": "mouse",
+          "nome": "Mouse no ar / laser digital",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "Giroscópio: o Windows vê movimento de mouse; laser digital, holofote e lupa vêm do software da Norwii."
+        },
+        {
+          "id": "caneta",
+          "nome": "Anotação / apagar",
+          "papel": "caneta",
+          "envia": [
+            "Ctrl+P",
+            "E"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser vermelho",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://raw.githubusercontent.com/jahnf/Projecteur/develop/devices.conf",
+        "https://www.norwii.com/product/189.html"
+      ],
+      "notas": "VID:PID conferido no Projecteur. Mesmas funções do N95s, corpo de alumínio, receptor duplo A/C que também é pendrive. Teclas de anotação estimadas."
+    },
+    {
+      "id": "norwii-n76",
+      "marca": "Norwii",
+      "nome": "N76 Wireless Presenter (hyperlink e volume)",
+      "desenho": "norwii-n76",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "tela-cheia",
+          "nome": "Tela cheia / tela preta",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "B"
+          ]
+        },
+        {
+          "id": "hyperlink",
+          "nome": "Hyperlink / trocar janela",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Enter",
+            "Alt+Tab"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume + (lateral)",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume - (lateral)",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.manualslib.com/manual/3775216/Norwii-N76.html",
+        "https://manuals.plus/m/29cb1647a0ed7a389bc46063a8435adc8d1a2e4a00d19e664f5de6c1b475c184"
+      ],
+      "notas": "Manual: page up/down, botão de tela cheia/tela preta, hyperlink/trocar janela e volume na lateral; a Norwii manda pôr o teclado em inglês se o toque longo não funcionar (sinal de que manda letras). Teclas do hyperlink estimadas. VID e PID a confirmar (o Projecteur lista um 'Norwii Wireless Presenter' 3243:0122 sem modelo)."
+    },
+    {
+      "id": "norwii-n27",
+      "marca": "Norwii",
+      "nome": "N27 Wireless Presenter (100 m, hyperlink e volume)",
+      "desenho": "norwii-n27",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte (segurar = tela preta)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "B"
+          ],
+          "segurar": "segurar manda tela preta"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior (segurar = tela cheia)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "F5",
+            "Esc"
+          ],
+          "segurar": "segurar alterna tela cheia"
+        },
+        {
+          "id": "hyperlink",
+          "nome": "Hyperlink",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Enter"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://bestviewsreviews.com/office-presentation-remotes/norwii-n27-wireless-presenter-with-laser-pointer-presentation-330-ft-long-contol-range-hyperlink-volume-ppt-powerpoint-clicker-for-presentation-remote-slide-advancer/",
+        "https://ubbcentral.com/store/item/NORWII-N27-Wireless-Presenter-with-Laser-Pointer-Presentation-Clicker-330FT-_155909917543.html"
+      ],
+      "notas": "Muito vendido na Amazon US. Só o anúncio (hyperlink, volume, 100 m); toques longos seguem o padrão da família Norwii (N28/N29). Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "microsoft-presenter-plus",
+      "marca": "Microsoft",
+      "nome": "Presenter+",
+      "desenho": "microsoft-presenter-plus",
+      "conexao": "Bluetooth",
+      "ids": [
+        {
+          "vid": "045E",
+          "pid": "0851",
+          "nota": "Projecteur devices.conf: Microsoft Presenter+, Bluetooth"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Next",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "Right"
+          ],
+          "segurar": "ação configurável no Microsoft Accessory Center"
+        },
+        {
+          "id": "voltar",
+          "nome": "Back",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "Left"
+          ],
+          "segurar": "ação configurável no Microsoft Accessory Center"
+        },
+        {
+          "id": "ponteiro",
+          "nome": "Laser pointer (segurar)",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "Ponteiro virtual: mexe com o movimento do controle e é desenhado pelo app/PowerPoint Live."
+        },
+        {
+          "id": "teams",
+          "nome": "Botão do Teams",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Comando próprio de dispositivo certificado para Teams (abrir Teams, levantar a mão); não é tecla comum."
+        },
+        {
+          "id": "mudo",
+          "nome": "Mudo",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Comando de telefonia do Teams (mudo; segurar = falar); não é tecla comum."
+        },
+        {
+          "id": "parear",
+          "nome": "Bluetooth (segurar 3 s)",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Entra no pareamento."
+        },
+        {
+          "id": "liga",
+          "nome": "Chave liga (atrás)",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Chave do aparelho."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://raw.githubusercontent.com/jahnf/Projecteur/develop/devices.conf",
+        "https://support.microsoft.com/en-US/surface/accessories/certified/set-up-and-use-microsoft-presenter",
+        "https://support.microsoft.com/en-us/surface/accessories/certified/use-microsoft-presenter-in-microsoft-teams"
+      ],
+      "notas": "VID:PID Bluetooth conferido no Projecteur. Só Bluetooth, carrega na base. A Microsoft não publica as teclas padrão de Back/Next (fora do PowerPoint Live); teclas estimadas."
+    },
+    {
+      "id": "lenovo-thinkpad-x1-presenter-mouse",
+      "marca": "Lenovo",
+      "nome": "ThinkPad X1 Presenter Mouse",
+      "desenho": "lenovo-thinkpad-x1-presenter-mouse",
+      "conexao": "Receptor USB 2.4 GHz e Bluetooth",
+      "ids": [
+        {
+          "vid": "17EF",
+          "pid": "60D9",
+          "nota": "Projecteur devices.conf: Lenovo ThinkPad X1 Presenter Mouse, receptor USB"
+        },
+        {
+          "vid": "17EF",
+          "pid": "60DB",
+          "nota": "Projecteur devices.conf: Lenovo ThinkPad X1 Presenter Mouse, Bluetooth"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "laser-virtual",
+          "nome": "Laser virtual / lupa",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "Mostra o laser virtual ou a lupa (duplo toque troca); desenhado pelo app da Lenovo, o Windows vê movimento de mouse."
+        },
+        {
+          "id": "ponteiro",
+          "nome": "Ponteiro do mouse (duplo toque = iniciar/encerrar)",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "clique-esquerdo",
+          "nome": "Clique esquerdo",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Clique de mouse."
+        },
+        {
+          "id": "clique-direito",
+          "nome": "Clique direito",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Clique de mouse."
+        },
+        {
+          "id": "rolagem",
+          "nome": "Faixa de rolagem por toque",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Rolagem de mouse."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://raw.githubusercontent.com/jahnf/Projecteur/develop/devices.conf",
+        "https://manualslib.mx/manual/519459/Lenovo-Thinkpad-X1.html?page=3",
+        "https://pcsupport.lenovo.com/no/en/accessories/ACC500115",
+        "https://download.lenovo.com/pccbbs/options/thinkpad_x1_presenter_mouse_qsg_201908_version2.pdf"
+      ],
+      "notas": "VID:PID conferido no Projecteur. Mouse que dobra: em tenda é mouse, reto é passador. A troca de slide depende do app da Lenovo; a ficha diz que iniciar/encerrar não se aplica, o manual diz duplo toque. Teclas estimadas."
+    },
+    {
+      "id": "avatto-h100",
+      "marca": "Avatto",
+      "nome": "H100 Presenter com mouse no ar e holofote",
+      "desenho": "avatto-h100",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "0C45",
+          "pid": "8101",
+          "nota": "Projecteur devices.conf: AVATTO H100 / August WP200 (chip Sonix)"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "modo",
+          "nome": "Mouse no ar / holofote / lupa (duplo toque troca)",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "Giroscópio: o Windows vê mouse; holofote e lupa vêm do software."
+        },
+        {
+          "id": "iniciar",
+          "nome": "Tela cheia",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://raw.githubusercontent.com/jahnf/Projecteur/develop/devices.conf",
+        "https://www.newegg.com/p/0TP-02UP-000D6",
+        "https://manualmachine.com/haojiehuatechnology/h100/10817692-user-manual"
+      ],
+      "notas": "VID:PID conferido no Projecteur (mesmo receptor do August WP200). Mesmo aparelho vendido como eFollower H100: visor, vibração, bateria interna e software. Botões e teclas estimados."
+    },
+    {
+      "id": "avatto-i10-pro",
+      "marca": "Avatto",
+      "nome": "i10 Pro Presenter com laser digital",
+      "desenho": "avatto-i10-pro",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "2571",
+          "pid": "4109",
+          "nota": "Projecteur devices.conf: AVATTO i10 Pro"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "laser-digital",
+          "nome": "Laser digital / holofote / lupa",
+          "papel": "foco",
+          "envia": [],
+          "soHardware": "Giroscópio: o Windows vê mouse; o efeito é desenhado pelo software."
+        },
+        {
+          "id": "iniciar",
+          "nome": "Tela cheia / tela preta",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc",
+            "B"
+          ]
+        },
+        {
+          "id": "caneta",
+          "nome": "Tinta digital / borracha",
+          "papel": "caneta",
+          "envia": [
+            "Ctrl+P",
+            "E"
+          ]
+        },
+        {
+          "id": "hyperlink",
+          "nome": "Hyperlink / trocar janela",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Enter",
+            "Alt+Tab"
+          ]
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://raw.githubusercontent.com/jahnf/Projecteur/develop/devices.conf",
+        "https://www.newegg.com/p/173-0255-008T0"
+      ],
+      "notas": "VID:PID conferido no Projecteur. Anúncio do i10 Plus: mouse no ar, laser digital, holofote, lupa, página, tela cheia/preta, tinta e borracha, hyperlink e trocar janela, sem botões de clique. Teclas estimadas."
+    },
+    {
+      "id": "august-lp315",
+      "marca": "August",
+      "nome": "LP315 Presenter com mouse no ar e visor",
+      "desenho": "august-lp315",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [
+        {
+          "vid": "2312",
+          "pid": "863D",
+          "nota": "Projecteur devices.conf: August LP315"
+        }
+      ],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "mouse",
+          "nome": "Mouse no ar",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Giroscópio: o Windows vê mouse."
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/sair",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser (segurar)",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "cronometro",
+          "nome": "Relógio/alarme",
+          "papel": "cronometro",
+          "envia": [],
+          "soHardware": "Ajusta relógio e alarme vibratório do visor."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://raw.githubusercontent.com/jahnf/Projecteur/develop/devices.conf",
+        "https://manuals.plus/?p=292902"
+      ],
+      "notas": "VID:PID conferido no Projecteur. Marca inglesa; manual cita mouse no ar, alarme vibratório, visor LCD, laser segurando o botão e alcance de 10 m. Botões e teclas estimados."
+    },
+    {
+      "id": "doosl-dsit032",
+      "marca": "Doosl",
+      "nome": "DSIT032 Wireless Presenter (hyperlink)",
+      "desenho": "doosl-dsit032",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte (segurar = tela preta)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "B"
+          ],
+          "segurar": "segurar manda tela preta"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior (segurar = tela cheia)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "F5",
+            "Esc"
+          ],
+          "segurar": "segurar alterna tela cheia"
+        },
+        {
+          "id": "hyperlink",
+          "nome": "Hyperlink (segurar = trocar janela)",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Enter",
+            "Alt+Tab"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://manuals.plus/m/7b3a31a06f1fd094eae8a90f3c67a6394d7b88f841c06e35fe79667f0720d315",
+        "https://manuals.plus/doosl/dsit032-wireless-presenter-manual.pdf"
+      ],
+      "notas": "Manual: depois de abrir o hyperlink, segurar o botão troca entre as janelas abertas; carrega por micro USB. Diferente da caneta fina já catalogada. Teclas de página estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "doosl-dsit014b",
+      "marca": "Doosl",
+      "nome": "DSIT014B Presenter com mouse e volume",
+      "desenho": "doosl-dsit014b",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "mouse",
+          "nome": "Mouse no ar / clique",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Giroscópio e clique: o Windows vê mouse."
+        },
+        {
+          "id": "caneta",
+          "nome": "Marcação eletrônica",
+          "papel": "caneta",
+          "envia": [
+            "Ctrl+P"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://www.newegg.com/p/173-0809-006W1",
+        "https://www.newegg.com/Doosl/BrandStore/ID-147318"
+      ],
+      "notas": "Anúncio cita clique de mouse, volume e marcação eletrônica, recarregável. Disposição e teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "baseus-orange-dot-ai",
+      "marca": "Baseus",
+      "nome": "Orange Dot AI Wireless Presenter (WKCD020013)",
+      "desenho": "baseus-orange-dot-ai",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "laser",
+          "nome": "Laser (três modos)",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "ia",
+          "nome": "Microfone da IA (transcrever/traduzir)",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Grava voz para o app da Baseus fazer legenda e tradução; não é tecla."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://red-dot.org/project/orange-dot-ai-wireless-presenter-63408",
+        "https://www.galaxus.de/en/s12/product/baseus-orange-dot-laser-pointer-with-ai-and-automatic-translation-grey-with-battery-presenters-59144293",
+        "https://www.tokopedia.com/baseusjakarta/baseus-laser-pointer-wireless-presenter-pen-presentasi-orange-dot"
+      ],
+      "notas": "Modelo com microfone, transcrição e tradução em 15 línguas e legenda ao vivo pelo app (BS-OH085). Botões e teclas estimados. VID e PID a confirmar. Há também a versão laser verde WKCD010013, mesmo corpo do Orange Dot já catalogado."
+    },
+    {
+      "id": "multilaser-ac285",
+      "marca": "Multilaser",
+      "nome": "Apresentador Pen Laser PS100 (AC285)",
+      "desenho": "multilaser-ac285",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Retornar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "laser",
+          "nome": "Laser vermelho",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.pichau.com.br/apresentador-de-slides-multi-laser-vermelho-alcance-de-200m-ac285",
+        "https://www.extra.com.br/apresentador-pen-laser-ps100-ac285-com-alcance-de-200m-e-conexao-usb-preto-multilaser/p/1582436253",
+        "https://site.fastshop.com.br/apresentador-de-slides-com-laser-vermelho-e-alcance-de-200m-multi--multilaser----ac285-ac285-147728/p"
+      ],
+      "notas": "Três botões (avançar, retornar, laser), clique silencioso, 1 pilha AAA. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "multilaser-ac385",
+      "marca": "Multilaser",
+      "nome": "Apresentador sem fio PS200 (AC385)",
+      "desenho": "multilaser-ac385",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/sair",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://www.pontofrio.com.br/apresentador-sem-fio-com-laser-ps200-ac385-com-conexao-usb-e-alcance-de-30m-preto-multilaser/p/1582436399",
+        "https://www.extra.com.br/apresentador-sem-fio-multi-ps200-com-laser-usb-com-alcance-de-30m-ac385/p/1566144895"
+      ],
+      "notas": "Cinco botões emborrachados, 30 m. Os anúncios não dizem a função de cada botão: assumi o desenho R400 de 5 botões. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "multilaser-ac164",
+      "marca": "Multilaser",
+      "nome": "Apresentador Multimídia Laser Point (AC164)",
+      "desenho": "multilaser-ac164",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar página",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Retroceder página",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://www.pichau.com.br/apresentador-multi-multimidia-laser-point-2-4ghz-ac164"
+      ],
+      "notas": "Ficha cita avançar, retroceder e tela preta. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "knup-kp-8001",
+      "marca": "Knup",
+      "nome": "Apresentador e Apontador Laser Point KP-8001",
+      "desenho": "knup-kp-8001",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://www.magazineluiza.com.br/busca/apontador+laser+pointer+wireless"
+      ],
+      "notas": "Só achei o nome e o preço (cerca de R$ 40, Magalu); sem ficha técnica. Botões, formato e teclas a confirmar. VID e PID a confirmar."
+    },
+    {
+      "id": "exbom-lpt-8",
+      "marca": "Exbom",
+      "nome": "Apresentador de Slides Multimídia Laser Pointer LPT-8",
+      "desenho": "exbom-lpt-8",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/sair",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://lista.mercadolivre.com.br/wireless-presenter",
+        "https://www.magazineluiza.com.br/busca/apresentador+laser+pointer+sem/"
+      ],
+      "notas": "Barato e bem avaliado no Mercado Livre (cerca de R$ 25, nota 4,8). Ficha sem botões: formato e teclas estimados. VID e PID a confirmar. A Exbom também vende o FEPRO-TR230."
+    },
+    {
+      "id": "c3tech-ap-200",
+      "marca": "C3Tech",
+      "nome": "Apresentador sem fio AP-200 (e AP-600 recarregável)",
+      "desenho": "c3tech-ap-200",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próximo (segurar = tela preta)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "B"
+          ],
+          "segurar": "segurar manda tela preta"
+        },
+        {
+          "id": "voltar",
+          "nome": "Anterior (segurar = tela cheia)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "F5",
+            "Esc"
+          ],
+          "segurar": "segurar alterna tela cheia"
+        },
+        {
+          "id": "tab",
+          "nome": "Tab / Enter (hyperlink)",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Enter"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser vermelho 650 nm",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "liga",
+          "nome": "Chave ON/OFF",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Chave do aparelho."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.extra.com.br/apresentador-sem-fio-c3tech-ap-200/p/1570463538",
+        "https://www.extra.com.br/apresentador-sem-fio-preto-ap-600-c3tech/p/1572438434",
+        "https://br.my-best.com/categories/1090"
+      ],
+      "notas": "Entre os mais vendidos no Brasil. A ficha lista ON/OFF, laser, LED, Enter, Tab, iniciar, tela cheia, tela preta, anterior, próximo e volume. O AP-600 tem as mesmas funções, bateria por micro USB e receptor duplo USB/USB-C. Qual botão faz o quê é estimado pelo clone de hyperlink. VID e PID a confirmar."
+    },
+    {
+      "id": "genius-media-pointer-100",
+      "marca": "Genius",
+      "nome": "Media Pointer 100",
+      "desenho": "genius-media-pointer-100",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Page down",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Page up",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "F5/Esc",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Página em branco",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "conferido",
+      "fontes": [
+        "https://www.bhphotovideo.com/c/product/853163-REG/Genius_MEDIA_POINTER_100_Media_Pointer_100_Smart.html",
+        "https://manualmachine.com/genius/mediapointer100/7707008-data-sheet",
+        "https://aio.lv/en/product--genius-31090010100--4948717.md"
+      ],
+      "notas": "Ficha da Genius: page up, page down, F5/Esc, página em branco e laser (cinco botões), pico receptor guardado no corpo, 10 m. A tecla da tela preta (B ou ponto) é estimada. VID e PID a confirmar (Genius/KYE = 0458)."
+    },
+    {
+      "id": "philips-snp6000",
+      "marca": "Philips",
+      "nome": "SNP6000 Presenter com mouse no ar",
+      "desenho": "philips-snp6000",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próximo slide (no modo mouse: clique direito)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Slide anterior (no modo mouse: clique esquerdo)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Play/Stop (no modo mouse: abrir arquivo)",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela em branco",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "modo",
+          "nome": "Chave apresentação / mouse no ar",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Troca o modo; no modo mouse o movimento vira cursor."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://manualmachine.com/philips/snp6000/616053-user-manual",
+        "https://manual-pdf.com/brands/philips/snp6000-97"
+      ],
+      "notas": "Tabela do manual conferida: play/stop, tela em branco, anterior, próximo e laser; no modo mouse viram abrir arquivo, nada, clique esquerdo e direito. Teclas estimadas. Irmão SNP3000 tem os mesmos botões sem o mouse. VID e PID a confirmar."
+    },
+    {
+      "id": "hama-x-pointer-6in1",
+      "marca": "Hama",
+      "nome": "X-Pointer 6in1 Wireless Laser Presenter",
+      "desenho": "hama-x-pointer-6in1",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar (mouse: clique direito)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar (mouse: clique esquerdo)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Tela cheia",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "caneta",
+          "nome": "Tinta digital",
+          "papel": "caneta",
+          "envia": [
+            "Ctrl+P",
+            "E"
+          ]
+        },
+        {
+          "id": "funcao",
+          "nome": "Função (liga o mouse no ar)",
+          "papel": "mouse",
+          "envia": [],
+          "soHardware": "Liga e desliga o mouse no ar; o movimento vira cursor."
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://uk.hama.com/00139916/hama-x-pointer-6in1-wireless-laser-presenter",
+        "https://support.hama.com/00139916/hama-x-pointer-6in1-wireless-laser-presenter",
+        "https://inside-tech.co.uk/laser-pointers-presenters/hama-x-pointer-6-in-1-wireless-laser-presenter-laser-pointer-air-mouse-full-black-screen-volume-powerpoint-digital-ink-15m-range"
+      ],
+      "notas": "Nove botões: laser, mouse no ar (botão de função), tela cheia, tela preta, volume, slides e tinta digital; receptor guardado no corpo, 2 AAA, 15 m. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "trust-kazun",
+      "marca": "Trust",
+      "nome": "Kazun Aluminium Wireless Presenter",
+      "desenho": "trust-kazun",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Próximo slide",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Slide anterior",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "iniciar",
+          "nome": "Iniciar/parar",
+          "papel": "iniciar",
+          "envia": [
+            "F5",
+            "Esc"
+          ]
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser vermelho",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "liga",
+          "nome": "Chave liga/desliga",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Chave do aparelho."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.trust.com/en/product/23333-kazun-aluminium-wireless-presenter",
+        "https://www.lambda-tek.com/Trust-23333-shUS/B43683779?viewSpec=y"
+      ],
+      "notas": "Funções do PowerPoint conferidas na ficha (iniciar/parar, próximo/anterior, tela preta), laser classe 2, recarregável por micro USB. Teclas estimadas. VID e PID a confirmar."
+    },
+    {
+      "id": "satechi-r1",
+      "marca": "Satechi",
+      "nome": "R1 Bluetooth Presentation Remote",
+      "desenho": "satechi-r1",
+      "conexao": "Bluetooth",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "Right",
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "Left",
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "tela-preta",
+          "nome": "Tela preta",
+          "papel": "tela-preta",
+          "envia": [
+            "B"
+          ]
+        },
+        {
+          "id": "teclado",
+          "nome": "Teclado virtual",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Comando para abrir o teclado na tela (iPad/Mac); no Windows o código é estimado."
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://www.bhphotovideo.com/c/product/1662651-REG/satechi_st_btpr1m_r1_bluetooth_presentation_remote.html",
+        "https://www.bookstore.colostate.edu/shop/supplies/electronics-accessories/R1-Bluetooth-Presentation-Remote-from-Satechi",
+        "https://appleinsider.com/articles/21/02/18/satechi-releases-pair-of-bluetooth-remotes-for-mac-ipad"
+      ],
+      "notas": "Bluetooth 5.0, USB-C, feito para Mac e iPad: voltar/avançar, teclado virtual, tela preta e laser. O irmão R2 é controle de mídia. Teclas estimadas (setas são comuns em controles Bluetooth para iPad). VID e PID a confirmar."
+    },
+    {
+      "id": "ugreen-60327",
+      "marca": "Ugreen",
+      "nome": "Presenter multifuncional com laser (60327)",
+      "desenho": "ugreen-60327",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Página seguinte (segurar = tela preta)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "B"
+          ],
+          "segurar": "segurar manda tela preta"
+        },
+        {
+          "id": "voltar",
+          "nome": "Página anterior (segurar = tela cheia)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "F5",
+            "Esc"
+          ],
+          "segurar": "segurar alterna tela cheia"
+        },
+        {
+          "id": "hyperlink",
+          "nome": "Hyperlink / trocar janela",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Enter",
+            "Alt+Tab"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume +",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume -",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://ugreenpk.com/product/ugreen-60327-office-wireless-presentation-remote",
+        "https://b2b.homescreen.pl/en/7932-ugreen-multifunctional-remote-with-laser-pointer.html"
+      ],
+      "notas": "Anúncios: laser, abrir hyperlink, slides, volume, vídeo, desligar tela e trocar janela; 100 m. Disposição e teclas estimadas pelo clone de hyperlink. VID e PID a confirmar."
+    },
+    {
+      "id": "inateck-wp2001",
+      "marca": "Inateck",
+      "nome": "WP2001 Wireless Presenter",
+      "desenho": "inateck-wp2001",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Avançar",
+          "papel": "avancar",
+          "envia": [
+            "PageDown"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "voltar",
+          "nome": "Voltar",
+          "papel": "voltar",
+          "envia": [
+            "PageUp"
+          ],
+          "segurar": "repete (autorepeat do Windows)"
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        }
+      ],
+      "confianca": "estimado",
+      "fontes": [
+        "https://appleworld.today/2016/12/review-inateck-wp2001-wireless-presenter/",
+        "https://manualmachine.com/inateck/wp1001/2401098-user-manual"
+      ],
+      "notas": "Resenha: plástico preto, avançar, voltar e laser em cima, receptor guardado embaixo. Botões extras e teclas a confirmar. O irmão WP1001 tem visor LCD. VID e PID a confirmar."
+    },
+    {
+      "id": "amerteer-rcrf-006",
+      "marca": "Amerteer",
+      "nome": "RCRF-006 Presenter com hyperlink e volume",
+      "desenho": "amerteer-rcrf-006",
+      "conexao": "Receptor USB 2.4 GHz",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "avancar",
+          "nome": "Page down (segurar = tela preta)",
+          "papel": "avancar",
+          "envia": [
+            "PageDown",
+            "B"
+          ],
+          "segurar": "segurar manda tela preta"
+        },
+        {
+          "id": "voltar",
+          "nome": "Page up (segurar = tela cheia)",
+          "papel": "voltar",
+          "envia": [
+            "PageUp",
+            "F5",
+            "Esc"
+          ],
+          "segurar": "segurar alterna tela cheia"
+        },
+        {
+          "id": "hyperlink",
+          "nome": "Hyperlink (um toque seleciona, dois abrem)",
+          "papel": "tab",
+          "envia": [
+            "Tab",
+            "Enter"
+          ]
+        },
+        {
+          "id": "volume-mais",
+          "nome": "Volume + (lateral)",
+          "papel": "mais",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "volume-menos",
+          "nome": "Volume - (lateral)",
+          "papel": "menos",
+          "envia": [
+            "VolumeDown"
+          ]
+        },
+        {
+          "id": "laser",
+          "nome": "Laser",
+          "papel": "laser",
+          "envia": [],
+          "soHardware": "O laser é só luz: o botão não chega ao computador."
+        },
+        {
+          "id": "liga",
+          "nome": "Chave ON/OFF",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Chave do aparelho."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.newegg.com/amerteer-rcrf-006/p/1HS-04BD-00094",
+        "https://manuals.plus/asin/B07C4WHYCF",
+        "https://blumaple.com/products/amerteer-wireless-presenter-remote-presentation-clicker-with-2-4ghz-rf-hyperlink-volume-control-built-in-rechargeable-battery-compatible-with-keynote-powerpoint-mac-pc-and-laptops"
+      ],
+      "notas": "Manual: volume na lateral, hyperlink na frente (um toque seleciona, dois toques abrem), page up/down, laser e chave. Recarregável. Mesmo aparelho vendido como Beboncool e DinoFire sem marca no corpo. VID e PID a confirmar."
+    },
+    {
+      "id": "ab-shutter3",
+      "marca": "AB Shutter3",
+      "nome": "Controle Bluetooth de selfie AB Shutter3",
+      "desenho": "ab-shutter3",
+      "conexao": "Bluetooth",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "ios",
+          "nome": "Botão grande (iOS)",
+          "papel": "avancar",
+          "envia": [
+            "VolumeUp"
+          ]
+        },
+        {
+          "id": "android",
+          "nome": "Botão pequeno (Android)",
+          "papel": "outro",
+          "envia": [
+            "Enter"
+          ]
+        },
+        {
+          "id": "liga",
+          "nome": "Chave liga/desliga",
+          "papel": "liga",
+          "envia": [],
+          "soHardware": "Chave do aparelho."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://shkspr.mobi/blog/2016/02/cheap-bluetooth-buttons-and-linux/",
+        "https://manuals.plus/vanguard/ab-shutter3-wireless-bluetooth-remote-manual"
+      ],
+      "notas": "Teste no Linux: o botão iOS manda Volume Up e o Android manda Enter (aparece como teclado 'AB Shutter 3'). Vendido em todo lugar como disparador de câmera; serve de passador se remapear Volume Up. VID e PID a confirmar."
+    },
+    {
+      "id": "anel-tiktok-5-botoes",
+      "marca": "Genérico",
+      "nome": "Anel Bluetooth de rolar vídeo (TikTok/Kindle, 5 botões)",
+      "desenho": "anel-tiktok-5-botoes",
+      "conexao": "Bluetooth",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "cima",
+          "nome": "Cima (vídeo anterior / rolar)",
+          "papel": "cima",
+          "envia": [],
+          "soHardware": "Simula arrasto de mouse ou toque na tela (no iPhone exige AssistiveTouch); o Windows vê o cursor arrastar, não tecla."
+        },
+        {
+          "id": "baixo",
+          "nome": "Baixo (próximo vídeo / rolar)",
+          "papel": "baixo",
+          "envia": [],
+          "soHardware": "Simula arrasto de mouse ou toque na tela; o Windows vê o cursor arrastar, não tecla."
+        },
+        {
+          "id": "esquerda",
+          "nome": "Esquerda (duplo toque = deslizar)",
+          "papel": "voltar",
+          "envia": [],
+          "soHardware": "Arrasto lateral simulado."
+        },
+        {
+          "id": "direita",
+          "nome": "Direita (duplo toque = deslizar)",
+          "papel": "avancar",
+          "envia": [],
+          "soHardware": "Arrasto lateral simulado."
+        },
+        {
+          "id": "ok",
+          "nome": "Centro (play/pausa ou curtir com duplo toque)",
+          "papel": "curtir",
+          "envia": [],
+          "soHardware": "Clique ou duplo clique simulado no centro da tela; em modo música pode mandar MediaPlayPause."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://manuals.plus/adzero/s41523-multifunction-remote-scrolling-ring-manual",
+        "https://manuals.plus/asin/B0CLYK2RYP",
+        "https://redlib.hbubli.cc/r/esp32/comments/1kkk1zo/help_esp32s3_cant_receive_data_from_ble_hid_ring"
+      ],
+      "notas": "Modelos como Vekesen D02 e ADZERO: cima/baixo rolam, duplo toque nas laterais desliza, centro pausa; alguns têm modo música e segurar = foto. O anel LY-09 aparece como 'hid_mouse'. No PC precisa de remapear mouse/arrasto; em modo música costuma mandar teclas de mídia e volume (a confirmar). VID e PID a confirmar."
+    },
+    {
+      "id": "airturn-duo-200",
+      "marca": "AirTurn",
+      "nome": "DUO 200 (pedal Bluetooth virador de página)",
+      "desenho": "airturn-duo-200",
+      "conexao": "Bluetooth",
+      "ids": [],
+      "botoes": [
+        {
+          "id": "pedal-esquerdo",
+          "nome": "Pedal esquerdo",
+          "papel": "voltar",
+          "envia": [
+            "Up",
+            "PageUp",
+            "Left"
+          ],
+          "segurar": "repete conforme o modo"
+        },
+        {
+          "id": "pedal-direito",
+          "nome": "Pedal direito",
+          "papel": "avancar",
+          "envia": [
+            "Down",
+            "PageDown",
+            "Right"
+          ],
+          "segurar": "repete conforme o modo"
+        },
+        {
+          "id": "modo",
+          "nome": "Teclado de modos no transmissor",
+          "papel": "outro",
+          "envia": [],
+          "soHardware": "Escolhe o modo (padrão: setas cima/baixo; modo 3/4: PageUp/PageDown); não chega ao computador."
+        }
+      ],
+      "confianca": "comunidade",
+      "fontes": [
+        "https://www.airturn.com/blogs/support/faq",
+        "https://manualslib.com/manual/1986862/Airturn-Bt200s-Series.html?page=13",
+        "https://onsongapp.com/docs/airturn-duo",
+        "https://cdn.shopify.com/s/files/1/1109/4160/files/apps_PED-Manual-English.pdf"
+      ],
+      "notas": "Para músico e quem lê partitura: dois pedais silenciosos e transmissor removível com 5 botões. Manuais da família: modo padrão manda setas cima/baixo, outro modo manda PageUp/PageDown, outro esquerda/direita. Tabela do DUO 200 a confirmar. VID e PID a confirmar."
     }
   ]
 }

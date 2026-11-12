@@ -1,4 +1,4 @@
-# Batuta: pesquisa técnica
+# Passador: pesquisa técnica
 
 Como um programa de Windows reconhece o passador de slides, troca o que cada botão faz e deixa o teclado de verdade em
 paz, sem driver. Escrito em 11/11/2026, com medida nesta máquina onde diz "medido".
@@ -26,7 +26,7 @@ Outros casos:
 
 **Segurar:** nenhum fabricante documenta o que o aparelho manda quando o botão fica apertado. Há dois comportamentos
 esperados. A maioria deve mandar o "apertou" e só soltar depois; a repetição, nesse caso, é o autorepeat do
-Windows. Alguns clones mandam apertar-soltar seguidos, em rajada. O detector de gestos do Batuta trata os dois casos
+Windows. Alguns clones mandam apertar-soltar seguidos, em rajada. O detector de gestos do Passador trata os dois casos
 (seção 4). **Isto precisa de aparelho real para confirmar.**
 
 ## 2. Saber de qual aparelho veio a tecla, e engolir só a dele
@@ -42,7 +42,7 @@ pedir acesso. `RIDEV_DEVNOTIFY` avisa quando um aparelho entra ou sai.
 ### O gancho de baixo nível NÃO serve para isso (medido)
 
 A técnica que se costuma citar junta o Raw Input com o `WH_KEYBOARD_LL`. Medimos nesta máquina
-(`E:\Cache\build\Batuta\sonda`, 11/11/2026) com o mesmo processo ouvindo os dois:
+(`E:\Cache\build\Passador\sonda`, 11/11/2026) com o mesmo processo ouvindo os dois:
 
 ```
 --- F24 sem bloquear
@@ -62,34 +62,34 @@ para o Raw Input também.
 ### O que funciona: WH_KEYBOARD (a correlação de verdade)
 
 O `WH_KEYBOARD` comum (não o LL) é chamado **dentro do programa da frente**, quando ele tira a mensagem de tecla da
-fila. Nessa hora o `WM_INPUT` daquela tecla já foi entregue ao Batuta. É a técnica do artigo "Combining Raw Input
+fila. Nessa hora o `WM_INPUT` daquela tecla já foi entregue ao Passador. É a técnica do artigo "Combining Raw Input
 and keyboard Hook to selectively block input from multiple keyboards" (V. Blecha, CodeProject).
 
-No Batuta ela funciona assim:
+No Passador ela funciona assim:
 
-1. `native/gancho/gancho.c` vira `batuta_gancho.dll` (3 KB, sem CRT, x64). Ele só pergunta ao motor:
+1. `native/gancho/gancho.c` vira `passador_gancho.dll` (3 KB, sem CRT, x64). Ele só pergunta ao motor:
    `SendMessageTimeout(janela do motor, WM_APP+0x51, vk|soltou|espiando, lParam, 60 ms)`. Se a resposta for 1, ele
    engole a tecla.
-2. O motor (`src/Batuta.Motor/Motor.cs`) guarda numa fila as teclas que chegaram pelo Raw Input nos últimos 500 ms,
+2. O motor (`src/Passador.Motor/Motor.cs`) guarda numa fila as teclas que chegaram pelo Raw Input nos últimos 500 ms,
    cada uma marcada "engolir ou não". Ao receber a pergunta, ele primeiro esvazia os `WM_INPUT` pendentes, depois
    acha na fila a tecla igual mais antiga ainda não usada e responde. Se nada aparecer em 25 ms, a tecla passa.
 3. Tecla de teclado comum: nunca é marcada, passa intacta. Tecla de passador com ação configurada: é engolida, e a
-   ação sai pelo `SendInput`. Tecla de passador sem nada configurado: é engolida e o Batuta a manda de novo, igual.
+   ação sai pelo `SendInput`. Tecla de passador sem nada configurado: é engolida e o Passador a manda de novo, igual.
    Assim o modificador que veio antes (o Shift de Shift+F5) continua chegando junto.
-4. Tudo o que o Batuta manda leva `dwExtraInfo = 0xBA7A0000`. O Raw Input repete esse valor em
-   `RAWKEYBOARD.ExtraInformation`, e por ele o motor e o gancho reconhecem a tecla como do próprio Batuta.
+4. Tudo o que o Passador manda leva `dwExtraInfo = 0xBA7A0000`. O Raw Input repete esse valor em
+   `RAWKEYBOARD.ExtraInformation`, e por ele o motor e o gancho reconhecem a tecla como do próprio Passador.
 5. Programa de 32 bits: o Windows não carrega a DLL de 64 bits nele e encaminha a chamada para a thread que
    instalou o gancho, onde a DLL também está carregada. Funciona igual, só com um pouco mais de latência.
-6. A DLL é copiada para `%LOCALAPPDATA%\Batuta.Dados\gancho\batuta_gancho-<hash>.dll`. Os outros programas
-   seguram a DLL aberta, e assim a atualização do Batuta não depende de todos eles fecharem.
+6. A DLL é copiada para `%LOCALAPPDATA%\Passador.Dados\gancho\passador_gancho-<hash>.dll`. Os outros programas
+   seguram a DLL aberta, e assim a atualização do Passador não depende de todos eles fecharem.
 7. O gancho só fica instalado enquanto há um passador configurado ligado. Sem passador, o custo é zero.
 
 Achado da prova de 12/11: o motor não pode mandar mensagem a nenhuma janela enquanto decide. O `GetWindowText`, por exemplo, manda `WM_GETTEXT`, e a thread dona da janela está parada no gancho esperando o motor. O resultado era espera de 60 ms e a tecla vazando. O título agora sai do `InternalGetWindowText`, e o gancho espera com `SMTO_NORMAL`.
 
-Resultado da prova (`Batuta.exe --prova`, 12/11 00:12): 7 de 7 casos passaram. Toque, segurar e dois toques viram a ação sem vazar a tecla de fábrica. O botão sem configuração passa uma vez. O Page Down do teclado passa intacto. Shift+F5 vira texto sem vazar Shift nem F5. Latência medida entre 266 e 375 ms por caso, incluindo as esperas da própria prova.
+Resultado da prova (`Passador.exe --prova`, 12/11 00:12): 7 de 7 casos passaram. Toque, segurar e dois toques viram a ação sem vazar a tecla de fábrica. O botão sem configuração passa uma vez. O Page Down do teclado passa intacto. Shift+F5 vira texto sem vazar Shift nem F5. Latência medida entre 266 e 375 ms por caso, incluindo as esperas da própria prova.
 
 Limites:
-- O gancho não chega a programa que roda como administrador quando o Batuta não roda, por causa do UIPI. Nesse
+- O gancho não chega a programa que roda como administrador quando o Passador não roda, por causa do UIPI. Nesse
   programa a tecla original passa junto com a ação.
 - A DLL x86 fica para a fase 2; pelo item 5, ela só melhoraria a latência.
 
@@ -100,10 +100,10 @@ do passador ligado, venham de onde vierem, inclusive do teclado. É explícito n
 
 ## 3. Prova sem aparelho: o passador simulado
 
-O `SendInput` também gera Raw Input, com `hDevice = 0` e o `dwExtraInfo` que se pediu. O Batuta trata
+O `SendInput` também gera Raw Input, com `hDevice = 0` e o `dwExtraInfo` que se pediu. O Passador trata
 `0xBA7A5100 + n` como "passador simulado n", com o modelo que se escolher. Daí para a frente o caminho é o mesmo de
 um passador de verdade: fila, gestos, ação, pergunta do gancho, bloqueio. Duas coisas usam isso:
-- `Batuta.exe --prova`: uma janelinha recebe as teclas, e a prova confere sete casos, gravando o resultado em
+- `Passador.exe --prova`: uma janelinha recebe as teclas, e a prova confere sete casos, gravando o resultado em
   `prova.json`. São eles: toque, segurar, botão sem configuração, Page Down do teclado intacto, dois toques, toque
   com dois toques ligado, e Shift+F5 virando texto sem vazar Shift.
 - "Testar no desenho", na tela Controle: aperta o botão do desenho e mostra o que chegou no programa.
@@ -116,7 +116,7 @@ Só o aparelho real confirma:
 
 ## 4. Gestos
 
-`src/Batuta.Core/Gestos.cs`, sem relógio próprio (testável):
+`src/Passador.Core/Gestos.cs`, sem relógio próprio (testável):
 - Botão sem dois toques nem segurar configurados: a ação sai no **apertar**, sem atraso.
 - Com segurar: o toque sai no soltar; segurar dispara em `SegurarMs` (padrão 550 ms) e pode valer **uma vez**,
   **repetindo** a cada `RepetirMs`, ou **enquanto segurar** (aperta a tecla da ação e só solta junto com o botão).
@@ -150,21 +150,21 @@ Não confunda:
 - **1D57:AD03** é um air mouse, não um passador.
 - **3151:4011** não aparece em nenhuma fonte como Norwii.
 
-A pesquisa completa, com URL e trecho, está em `E:\Cache\build\Batuta\pesquisa\catalogo-pesquisa.json`.
+A pesquisa completa, com URL e trecho, está em `E:\Cache\build\Passador\pesquisa\catalogo-pesquisa.json`.
 
 Botão que alterna teclas (F5, depois Esc) lista as duas em `envia`, e as duas viram o mesmo botão. Quando a marca
 varia entre clones (B ou Ponto, Page Down ou seta), o catálogo lista as variantes: qualquer uma acende o mesmo
 botão.
 
 **Reconhecimento:**
-- PID exato no catálogo: o Batuta associa sozinho.
+- PID exato no catálogo: o Passador associa sozinho.
 - Só o VID (fabricante): fica como palpite, e o modo aprender sugere.
 - Aparelho cujo nome do produto diz "Presenter", "Remote", "Laser" etc.: aparece como "passador fora do catálogo".
 
 ## 6. Modo aprender
 
 Na tela Aprender, o motor para de bloquear e de fazer ação e mostra as teclas de todos os aparelhos. O primeiro
-aparelho que mandar uma tecla vira o aprendido: o Batuta anota o VID, o PID e o nome. A partir daí:
+aparelho que mandar uma tecla vira o aprendido: o Passador anota o VID, o PID e o nome. A partir daí:
 - cada combinação nova (modificadores mais tecla) vira um botão, com nome e papel deduzidos (Page Down = Avançar);
 - botão que alterna aparece duas vezes, e "juntar com o de cima" o une;
 - se as teclas batem com um modelo do catálogo, ele sugere usar aquele desenho;

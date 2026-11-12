@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>Passador</AssemblyName>
+    <RootNamespace>Passador.App</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>..\..\assets\passador.ico</ApplicationIcon>
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
+    <!-- Só para testar a volta de versão: -p:TesteQueda=true gera uma versão que cai ao abrir. -->
+    <DefineConstants Condition="'$(TesteQueda)' == 'true'">$(DefineConstants);TESTE_QUEDA</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- O Main é nosso (Program.cs): o Velopack precisa rodar antes do WPF. -->
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- WinForms só para o ícone da bandeja: sem os usings globais dele (colidem com os do WPF). -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Passador.Core\Passador.Core.csproj" />
+    <ProjectReference Include="..\Passador.Motor\Passador.Motor.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\assets\passador.ico" Link="passador.ico" />
+    <Resource Include="..\..\assets\passador-256.png" Link="passador-256.png" />
+    <Resource Include="..\..\assets\fontes\*.ttf" Link="fontes\%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\catalogo\modelos.json" Link="catalogo\modelos.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\catalogo\desenhos\*.svg" Link="catalogo\desenhos\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\docs\novidades\*.md" Link="novidades\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Velopack" Version="1.2.161" />
+  </ItemGroup>
+</Project>

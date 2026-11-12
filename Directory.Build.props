@@ -3,13 +3,13 @@
        não pisarem umas nas outras); no GitHub Actions ficam no padrão. -->
   <PropertyGroup>
     <_Copia>$([System.IO.Path]::GetFileName($(MSBuildThisFileDirectory.TrimEnd('\'))))</_Copia>
-    <ArtifactsPath Condition="'$(CI)' != 'true' And Exists('E:\Cache')">E:\Cache\build\Batuta\artifacts\$(_Copia.Replace(' ', '-'))</ArtifactsPath>
+    <ArtifactsPath Condition="'$(CI)' != 'true' And Exists('E:\Cache')">E:\Cache\build\Passador\artifacts\$(_Copia.Replace(' ', '-'))</ArtifactsPath>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <Version>0.1.2</Version>
     <Company>Caio Rossi</Company>
-    <Product>Batuta</Product>
+    <Product>Passador</Product>
     <Authors>Caio Rossi</Authors>
     <Copyright>© 2026 Caio Rossi. Todos os direitos reservados.</Copyright>
   </PropertyGroup>

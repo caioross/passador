@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 560" width="220" height="560">
+<defs>
+  <linearGradient id="corpo" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#0b0b0e"/><stop offset="0.16" stop-color="#2c2b33"/>
+    <stop offset="0.34" stop-color="#1b1a20"/><stop offset="0.82" stop-color="#121116"/><stop offset="1" stop-color="#050506"/>
+  </linearGradient>
+  <linearGradient id="corpoClaro" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#26262c"/><stop offset="0.2" stop-color="#5a5a64"/>
+    <stop offset="0.45" stop-color="#3a3a42"/><stop offset="1" stop-color="#16161a"/>
+  </linearGradient>
+  <linearGradient id="brilho" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="botao" cx="0.38" cy="0.3" r="0.85">
+    <stop offset="0" stop-color="#3d3c45"/><stop offset="0.7" stop-color="#232228"/><stop offset="1" stop-color="#16151a"/>
+  </radialGradient>
+  <radialGradient id="botaoCinza" cx="0.38" cy="0.3" r="0.9">
+    <stop offset="0" stop-color="#9c9ca6"/><stop offset="0.75" stop-color="#6c6c76"/><stop offset="1" stop-color="#4a4a52"/>
+  </radialGradient>
+  <radialGradient id="laranja" cx="0.38" cy="0.3" r="0.9">
+    <stop offset="0" stop-color="#ffb066"/><stop offset="0.6" stop-color="#ff7a1a"/><stop offset="1" stop-color="#c2500a"/>
+  </radialGradient>
+  <radialGradient id="laser" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#ff5a4a"/><stop offset="1" stop-color="#7a1010"/>
+  </radialGradient>
+  <radialGradient id="ledVerde" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#b6ffcf"/><stop offset="0.5" stop-color="#2fd36b"/><stop offset="1" stop-color="#2fd36b" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="ledAzul" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#d6e6ff"/><stop offset="0.45" stop-color="#3d7bff"/><stop offset="1" stop-color="#3d7bff" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#050507"/><stop offset="1" stop-color="#121218"/>
+  </linearGradient>
+  <linearGradient id="corpoPrata" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#6e7078"/><stop offset="0.18" stop-color="#e2e3e8"/>
+    <stop offset="0.42" stop-color="#b8bac2"/><stop offset="0.82" stop-color="#9a9ca5"/><stop offset="1" stop-color="#55575e"/>
+  </linearGradient>
+  <linearGradient id="corpoGrafite" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#121419"/><stop offset="0.18" stop-color="#454b56"/>
+    <stop offset="0.4" stop-color="#2b3039"/><stop offset="0.85" stop-color="#1b1e24"/><stop offset="1" stop-color="#0a0b0e"/>
+  </linearGradient>
+  <linearGradient id="corpoFosco" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#0c0c0e"/><stop offset="0.2" stop-color="#1f1f23"/>
+    <stop offset="0.5" stop-color="#18181b"/><stop offset="0.85" stop-color="#111113"/><stop offset="1" stop-color="#060607"/>
+  </linearGradient>
+  <linearGradient id="corpoAzul" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#0b1220"/><stop offset="0.18" stop-color="#2c3e5e"/>
+    <stop offset="0.42" stop-color="#1c2a44"/><stop offset="0.85" stop-color="#121c2e"/><stop offset="1" stop-color="#070b14"/>
+  </linearGradient>
+  <linearGradient id="cromo" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#5c5f68"/><stop offset="0.35" stop-color="#eceef3"/>
+    <stop offset="0.6" stop-color="#8d9099"/><stop offset="1" stop-color="#3c3e45"/>
+  </linearGradient>
+  <radialGradient id="botaoPrata" cx="0.38" cy="0.3" r="0.9">
+    <stop offset="0" stop-color="#f6f6f9"/><stop offset="0.7" stop-color="#c9cad1"/><stop offset="1" stop-color="#9c9ea6"/>
+  </radialGradient>
+  <radialGradient id="botaoBranco" cx="0.38" cy="0.3" r="0.9">
+    <stop offset="0" stop-color="#ffffff"/><stop offset="0.75" stop-color="#e4e4ea"/><stop offset="1" stop-color="#b9b9c2"/>
+  </radialGradient>
+  <radialGradient id="borracha" cx="0.4" cy="0.32" r="0.9">
+    <stop offset="0" stop-color="#2e2e34"/><stop offset="0.8" stop-color="#1a1a1e"/><stop offset="1" stop-color="#101013"/>
+  </radialGradient>
+  <radialGradient id="laserVerde" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#7dff9a"/><stop offset="1" stop-color="#0c5a1c"/>
+  </radialGradient>
+  <radialGradient id="ledVermelho" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#ffd6d0"/><stop offset="0.45" stop-color="#ff3b2e"/><stop offset="1" stop-color="#ff3b2e" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="visorAzul" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0a1626"/><stop offset="1" stop-color="#14263e"/>
+  </linearGradient>
+  <linearGradient id="visorVerde" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#b9c9a0"/><stop offset="1" stop-color="#93a67a"/>
+  </linearGradient>
+</defs>
+<path d="M110 22 C156.5 22 174 50 172 96 L160 482 C158 522 137.5 542 110 542 C82.5 542 62 522 60 482 L48 96 C46 50 63.5 22 110 22 Z" fill="url(#corpo)" stroke="#000000" stroke-width="1.5"/><path d="M110 22 C156.5 22 174 50 172 96 L160 482 C158 522 137.5 542 110 542 C82.5 542 62 522 60 482 L48 96 C46 50 63.5 22 110 22 Z" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/><path d="M68 44 C58 70 56 110 60 190 L68 476 C70 502 76 518 84 526 L76 190 C72 110 74 70 82 46 Z" fill="url(#brilho)" opacity="0.9"/>
+<rect x="98" y="18" width="24" height="6" rx="3" fill="#5a0c0c"/><circle cx="110" cy="46" r="5" fill="url(#ledVermelho)"/><circle cx="110" cy="46" r="1.60" fill="#ffffff" fill-opacity="0.9"/><rect x="95" y="516" width="30" height="8" rx="3" fill="#0a0a0c" stroke="#ffffff" stroke-opacity="0.06"/>
+<g data-botao="laser"><rect x="86" y="64" width="48" height="24" rx="12" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(102.00 68.00) scale(0.6667)" fill="none" stroke="#ff6a5a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L12 8"/><path d="M12 16 L12 21"/><path d="M3 12 L8 12"/><path d="M16 12 L21 12"/><path d="M5.6 5.6 L8.5 8.5"/><path d="M15.5 15.5 L18.4 18.4"/><path d="M5.6 18.4 L8.5 15.5"/><path d="M15.5 8.5 L18.4 5.6"/></g></g>
+<g data-botao="voltar"><path d="M100 104 Q106 104 106 110 L106 168 Q106 174 100 174 L78 174 L60 139 L78 104 Z" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(74.00 128.00) scale(0.9167)" fill="none" stroke="#e9e7ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 L9 12 L15 6"/></g></g>
+<g data-botao="avancar"><path d="M120 104 Q114 104 114 110 L114 168 Q114 174 120 174 L142 174 L160 139 L142 104 Z" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(124.00 128.00) scale(0.9167)" fill="none" stroke="#e9e7ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18 L15 12 L9 6"/></g></g>
+<g data-botao="tab"><circle cx="110" cy="206" r="16" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><text x="110" y="210" font-family="Segoe UI" font-weight="bold" font-size="10" fill="#e9e7ef" text-anchor="middle">Tab</text></g>
+<g data-botao="volume-menos"><circle cx="86" cy="250" r="13" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(80.00 244.00) scale(0.5000)" fill="none" stroke="#e9e7ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 L7 9 L12 5 L12 19 L7 15 L3 15 Z"/><path d="M16 12 L22 12"/></g></g>
+<g data-botao="volume-mais"><circle cx="134" cy="250" r="13" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><g transform="translate(128.00 244.00) scale(0.5000)" fill="none" stroke="#e9e7ef" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 L7 9 L12 5 L12 19 L7 15 L3 15 Z"/><path d="M16 12 L22 12"/><path d="M19 9 L19 15"/></g></g>
+<g data-botao="liga"><rect x="52" y="300" width="9" height="32" rx="4" fill="url(#botao)" stroke="#000000" stroke-opacity="0.6" stroke-width="1.2"/><path d="M56.5 306 L56.5 326" stroke="#000000" stroke-opacity="0.5" stroke-width="1"/></g>
+</svg>

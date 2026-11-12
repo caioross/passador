@@ -11,3 +11,5 @@ Releases/
 tests/**/saida/
 native/saida/
 docs/capturas/_tmp/
+# Fotos de referência são de anúncios (direito de terceiros): ficam fora do repositório (E:\Data\passador\referencias)
+docs/referencias/

@@ -1,10 +1,10 @@
-﻿# Compila native\gancho\gancho.c em batuta_gancho.dll (x64) com o MSVC do Visual Studio (vswhere acha qual).
+﻿# Compila native\gancho\gancho.c em passador_gancho.dll (x64) com o MSVC do Visual Studio (vswhere acha qual).
 #   powershell -File native\compilar.ps1 [-Saida <pasta>]
 # Só recompila se o .c for mais novo que a DLL. Sem CRT, sem dependência: o Windows carrega em todo programa.
 param([string]$Saida = (Join-Path $PSScriptRoot "saida"))
 $ErrorActionPreference = "Stop"
 $fonte = Join-Path $PSScriptRoot "gancho\gancho.c"
-$dll = Join-Path $Saida "batuta_gancho.dll"
+$dll = Join-Path $Saida "passador_gancho.dll"
 if ((Test-Path $dll) -and (Get-Item $dll).LastWriteTime -ge (Get-Item $fonte).LastWriteTime) { Write-Host "gancho em dia: $dll"; exit 0 }
 New-Item -ItemType Directory -Force $Saida | Out-Null
 

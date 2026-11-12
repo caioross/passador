@@ -1,11 +1,11 @@
-# Leva o release para o espelho da b75 (https://clarify-atualizacoes.caiorossi.com/batuta), de onde o Batuta instalado
+# Leva o release para o espelho da b75 (https://clarify-atualizacoes.caiorossi.com/passador), de onde o Passador instalado
 # se atualiza: o repositório é privado e o programa não tem chave do GitHub. A b75 baixa os arquivos direto do GitHub
 # com o GITHUB_TOKEN deste job (só leitura, morre quando o job acaba); o job espera a cópia terminar e confere a versão.
 # Roda depois de cada Release, todo dia (reconcilia: release apagado aqui faz o espelho voltar para o anterior) e à mão.
-# Molde: espelho.yml do Clarify Avaliador. O grupo "batuta" do espelho só mexe neste app (BATUTA_ESPELHO_TOKEN).
+# Molde: espelho.yml do Clarify Avaliador. O grupo "passador" do espelho só mexe neste app (PASSADOR_ESPELHO_TOKEN).
 #
 # DESLIGADO ATÉ A VIRADA M4 DO ESPELHO (plano do Núcleo, servidor/atualizacoes/migracao): hoje o host público ainda
-# aponta para o espelho antigo da Clarify (porta 3112), que não conhece o Batuta. Até lá a cópia sai do PC da casa:
+# aponta para o espelho antigo da Clarify (porta 3112), que não conhece o Passador. Até lá a cópia sai do PC da casa:
 # tools/espelhar.ps1. Depois da M4, trocar o "on:" abaixo pelos gatilhos do Avaliador (workflow_run + schedule).
 name: Espelho na b75
 
@@ -26,11 +26,11 @@ jobs:
     timeout-minutes: 30
     env:
       ESPELHO: https://clarify-atualizacoes.caiorossi.com
-      APP: batuta
+      APP: passador
     steps:
       - name: Pede a cópia e espera terminar
         env:
-          SEGREDO: ${{ secrets.BATUTA_ESPELHO_TOKEN }}
+          SEGREDO: ${{ secrets.PASSADOR_ESPELHO_TOKEN }}
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
