@@ -54,8 +54,7 @@ if ($Publicar) {
     Write-Host "== baixando a versão anterior do GitHub (para o delta)"
     & $vpk download github --repoUrl $repo --token $Token -o $releases
     # Até a 0.1.2 o pacote se chamava Batuta: delta só entre pacotes do mesmo nome (a 0.2.0 sai sem delta).
-    $lista = Join-Path $releases "releases.win.json"
-    if ((Test-Path $lista) -and ((Get-Content $lista -Raw | ConvertFrom-Json).Assets | Where-Object { $_.PackageId -ne "Passador" })) {
+    if (Get-ChildItem $releases -Filter "*.nupkg" -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -notlike "Passador-*" }) {
         Write-Host "== a anterior é de outro pacote (Batuta): sem delta desta vez"
         Get-ChildItem $releases -File | Remove-Item -Force
     }

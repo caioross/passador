@@ -177,7 +177,13 @@ sealed class FonteEspelho(string[] feeds, Func<IReadOnlyCollection<string>> ruin
                 var lista = await f.GetReleaseFeed(logger, appId, channel, stagingId, latestLocalRelease);
                 _usada = f;
                 var fora = ruins();
-                return new VelopackAssetFeed { Assets = [.. lista.Assets.Where(a => !fora.Contains(a.Version.ToString()))] };
+                // Só pacotes do Passador: o feed ainda lista os do Batuta (o nome antigo), e voltar de versão para um
+                // deles trocaria de pacote no meio da instalação.
+                return new VelopackAssetFeed
+                {
+                    Assets = [.. lista.Assets.Where(a => !fora.Contains(a.Version.ToString())
+                        && string.Equals(a.PackageId, appId ?? "Passador", StringComparison.OrdinalIgnoreCase))],
+                };
             }
             catch (Exception ex) { ultimo = ex; }
         }
