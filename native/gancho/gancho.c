@@ -9,6 +9,8 @@
  *
  * O Windows carrega esta DLL em cada programa de 64 bits que recebe teclado (o de 32 bits precisaria de uma DLL
  * x86, fase 2). Por isso ela é mínima, sem CRT, e responde em até 60 ms: motor travado = a tecla passa.
+ * SMTO_NORMAL (não BLOCK): enquanto espera, a thread do programa ainda atende mensagens enviadas a ela; com BLOCK,
+ * qualquer pergunta do motor a essa thread virava espera de 60 ms e a tecla vazava (achado da prova de 12/11).
  */
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -35,7 +37,7 @@ __declspec(dllexport) LRESULT CALLBACK BatutaTeclado(int code, WPARAM wParam, LP
             WPARAM w = (wParam & 0xFFFF)
                 | ((lParam & 0x80000000) ? 0x10000 : 0)   /* soltou */
                 | (code == HC_NOREMOVE ? 0x20000 : 0);    /* só espiando (PeekMessage sem tirar da fila) */
-            if (SendMessageTimeoutW(m, WM_BATUTA_DECIDIR, w, lParam, SMTO_ABORTIFHUNG | SMTO_BLOCK, 60, &r) && r == 1)
+            if (SendMessageTimeoutW(m, WM_BATUTA_DECIDIR, w, lParam, SMTO_ABORTIFHUNG | SMTO_NORMAL, 60, &r) && r == 1)
                 return 1;
         }
     }

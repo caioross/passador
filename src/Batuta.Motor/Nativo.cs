@@ -67,7 +67,8 @@ public static unsafe class Nativo
     [DllImport("user32")] public static extern uint MapVirtualKeyW(uint code, uint type);
     [DllImport("user32")] public static extern IntPtr GetForegroundWindow();
     [DllImport("user32")] public static extern uint GetWindowThreadProcessId(IntPtr h, out uint pid);
-    [DllImport("user32", CharSet = CharSet.Unicode)] public static extern int GetWindowTextW(IntPtr h, char[] s, int max);
+    /// <summary>Título sem mandar WM_GETTEXT (o GetWindowText manda, e a thread da janela pode estar presa no gancho).</summary>
+    [DllImport("user32", CharSet = CharSet.Unicode)] public static extern int InternalGetWindowText(IntPtr h, char[] s, int max);
     [DllImport("kernel32", CharSet = CharSet.Unicode, SetLastError = true)] public static extern IntPtr LoadLibraryW(string path);
     [DllImport("kernel32", CharSet = CharSet.Ansi)] public static extern IntPtr GetProcAddress(IntPtr mod, string name);
     [DllImport("kernel32")] public static extern IntPtr GetModuleHandleW(IntPtr name);

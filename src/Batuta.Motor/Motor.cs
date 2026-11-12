@@ -443,7 +443,7 @@ public sealed unsafe class MotorDeEntrada : IDisposable
             var h = GetForegroundWindow();
             if (h == IntPtr.Zero) return ("", "");
             GetWindowThreadProcessId(h, out var pid);
-            var n = GetWindowTextW(h, _buf, _buf.Length);
+            var n = InternalGetWindowText(h, _buf, _buf.Length);
             var titulo = new string(_buf, 0, Math.Max(0, n));
             if (cache is not null && cache.TryGetValue(pid, out var nome)) return (nome, titulo);
             nome = "";

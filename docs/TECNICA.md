@@ -84,6 +84,10 @@ No Batuta ela funciona assim:
    seguram a DLL aberta, e assim a atualização do Batuta não depende de todos eles fecharem.
 7. O gancho só fica instalado enquanto há um passador configurado ligado. Sem passador, o custo é zero.
 
+Achado da prova de 12/11: o motor não pode mandar mensagem a nenhuma janela enquanto decide. O `GetWindowText`, por exemplo, manda `WM_GETTEXT`, e a thread dona da janela está parada no gancho esperando o motor. O resultado era espera de 60 ms e a tecla vazando. O título agora sai do `InternalGetWindowText`, e o gancho espera com `SMTO_NORMAL`.
+
+Resultado da prova (`Batuta.exe --prova`, 12/11 00:12): 7 de 7 casos passaram. Toque, segurar e dois toques viram a ação sem vazar a tecla de fábrica. O botão sem configuração passa uma vez. O Page Down do teclado passa intacto. Shift+F5 vira texto sem vazar Shift nem F5. Latência medida entre 266 e 375 ms por caso, incluindo as esperas da própria prova.
+
 Limites:
 - O gancho não chega a programa que roda como administrador quando o Batuta não roda, por causa do UIPI. Nesse
   programa a tecla original passa junto com a ação.
