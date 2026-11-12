@@ -1,0 +1,64 @@
+name: Novo passador / New clicker
+description: Pedir (ou mandar) um passador que ainda não está no catálogo. / Ask for a clicker that is not in the catalog yet.
+title: "[Passador] Marca Modelo"
+labels: ["catalogo"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado! Quanto mais destes campos vierem preenchidos, mais rápido o modelo entra. O passo a passo está no
+        [CONTRIBUTING.md](https://github.com/caioross/passador/blob/main/CONTRIBUTING.md).
+        *English is fine too.*
+  - type: input
+    id: modelo
+    attributes:
+      label: Marca e modelo / Brand and model
+      placeholder: "Ex.: Targus AMP16"
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link do anúncio ou do manual / Store or manual link
+  - type: dropdown
+    id: conexao
+    attributes:
+      label: Conexão / Connection
+      options:
+        - Receptor USB 2.4 GHz
+        - Receptor USB-C 2.4 GHz
+        - Bluetooth
+        - Receptor e Bluetooth
+        - Não sei / Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: aparelhos
+    attributes:
+      label: Saída do "Passador.exe --aparelhos" / Output of "Passador.exe --aparelhos"
+      description: Com o passador ligado. Cole só o trecho do passador (VID, PID, produto, bateria). / With the clicker plugged in; paste only the clicker's entry.
+      render: json
+  - type: textarea
+    id: botoes
+    attributes:
+      label: Botões e o que cada um manda / Buttons and the key each one sends
+      description: A tela Aprender mostra a tecla de cada botão. Diga também o que acontece ao segurar. / The Learn screen shows each button's key. Also tell what happens on hold.
+      placeholder: |
+        Seta direita (grande): Page Down; segurando, repete
+        Seta esquerda: Page Up
+        Play: F5 e depois Esc
+        Laser: não manda nada
+    validations:
+      required: true
+  - type: textarea
+    id: foto
+    attributes:
+      label: Foto sua do aparelho (opcional) / Your own photo of the device (optional)
+      description: Foto de anúncio não serve (direito autoral). O desenho do catálogo é feito por nós. / Store photos can't be used; we draw our own.
+  - type: checkboxes
+    id: conduta
+    attributes:
+      label: Conduta / Conduct
+      options:
+        - label: Li e sigo o Código de Conduta. / I follow the Code of Conduct.
+          required: true

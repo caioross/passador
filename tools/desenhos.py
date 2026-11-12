@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Gera os desenhos vetoriais dos passadores (catalogo/desenhos/*.svg), feitos por nós a partir das fotos de referência
-(docs/referencias) e das fichas dos fabricantes. Uso:  python tools/desenhos.py
+(fotos de referência guardadas fora do repositório: as de anúncio têm direito de terceiros) e das fichas dos fabricantes. Uso:  python tools/desenhos.py
 
 Regras do formato (o app tem um leitor de SVG próprio, pequeno, em src/Passador.App/Desenho/LeitorSvg.cs):
 - só path, rect, circle, ellipse, line, text e g; gradientes linear e radial em <defs>;

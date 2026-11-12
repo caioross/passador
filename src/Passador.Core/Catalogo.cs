@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Passador.Core;
@@ -56,7 +56,7 @@ public sealed class Modelo
     public string Confianca { get; set; } = "estimado";
     public string? Notas { get; set; }
     public List<string> Fontes { get; set; } = [];
-    /// <summary>A que foto de referência o desenho corresponde (docs/referencias).</summary>
+    /// <summary>A que foto de referência o desenho corresponde (fotos de referência guardadas fora do repositório: as de anúncio têm direito de terceiros).</summary>
     public string? Referencia { get; set; }
 
     [JsonIgnore] public string NomeCompleto => string.IsNullOrEmpty(Marca) ? Nome : $"{Marca} {Nome}";

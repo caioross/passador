@@ -1,11 +1,31 @@
-Copyright (c) 2026 Caio Rossi. Todos os direitos reservados.
+MIT License
 
-O código-fonte deste repositório é privado. Nenhuma licença é concedida para
-copiar, modificar, distribuir, sublicenciar ou usar este software, no todo ou em parte, sem autorização
-prévia e por escrito do autor.
+Copyright (c) 2026 Caio Rossi and Passador contributors
 
-Os desenhos dos passadores foram feitos pelo autor a partir de fotos e fichas públicas; as marcas citadas
-pertencem aos seus donos.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Fontes incluídas: Outfit e Lato, sob a SIL Open Font License 1.1. Ícones: traços do Lucide (licença ISC),
-redesenhados.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Brand names (Logitech, Kensington, Targus, Canon, Norwii and others) appear in the
+catalog only to identify compatible devices. They belong to their owners. The
+device drawings in catalogo/desenhos are original, generic artwork made for this
+project and contain no logos.
+
+The fonts in assets/fontes (Outfit and Lato) are distributed under the SIL Open
+Font License 1.1.

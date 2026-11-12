@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -58,6 +58,22 @@ static class Capturas
         c.Demonstrar("google-slides", "iniciar", [new("SIM", "anel-5-botoes", "avancar", Gesto.Toque, "Seta direita", "google-slides", null)], aceso: "avancar");
         await Esperar(700);
         Salvar(j, Path.Combine(pasta, "03-controle-anel.png"));
+
+        c.Trocar(s.ModeloPorId("canon-pr10-g")!);
+        await Esperar(400);
+        c.Demonstrar("powerpoint", "avancar", [new("SIM", "canon-pr10-g", "avancar", Gesto.Toque, "Page Down", "powerpoint", null)], aceso: "avancar");
+        await Esperar(700);
+        Salvar(j, Path.Combine(pasta, "08-controle-canon.png"));
+
+        // O menu da bandeja, com um passador (simulado) ligado e o perfil fixo no PowerPoint
+        s.Motor.Simular(7, "logitech-r400");
+        s.Config.Ajustes.PerfilFixo = "powerpoint";
+        await Esperar(900);
+        using (var b = new Bandeja(s, () => { }, () => { }, () => { }, mostrar: false) { Demonstracao = (82, "receptor USB") })
+            b.CapturarMenu(Path.Combine(pasta, "09-bandeja.png"));
+        s.Config.Ajustes.PerfilFixo = null;
+        s.Motor.Simular(7, null);
+        await Esperar(300);
 
         j.Ir("Catálogo");
         await Esperar(900);

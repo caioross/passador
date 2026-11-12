@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -70,7 +70,7 @@ public sealed class PaginaAjustes : ScrollViewer, IPagina
         _c.Children.Add(linha);
 
         Secao("pasta", "Sobre");
-        _c.Children.Add(T($"Passador {Atualizador.VersaoAtual}. © 2026 Caio Rossi. Todos os direitos reservados.", "Explica"));
+        _c.Children.Add(T($"Passador {Atualizador.VersaoAtual}. Código aberto (licença MIT): github.com/caioross/passador. Site: passador.caiorossi.com.", "Explica"));
         _c.Children.Add(T("Os desenhos dos passadores são nossos, feitos a partir de fotos e fichas dos fabricantes; marcas citadas são dos donos delas.", "Rotulo", 12, "Texto3", new Thickness(0, 4, 0, 10)));
         var sobre = new WrapPanel();
         sobre.Children.Add(Botao("Abrir a pasta de dados", "BotaoFantasma", "pasta", () => Abrir(Armazenamento.PastaPadrao)));

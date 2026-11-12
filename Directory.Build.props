@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <!-- No PC de desenvolvimento, bin/obj vão para E:\Cache (uma pasta por cópia do repositório, para as worktrees
        não pisarem umas nas outras); no GitHub Actions ficam no padrão. -->
   <PropertyGroup>
@@ -7,10 +7,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
-    <Version>0.1.2</Version>
+    <Version>0.2.0</Version>
     <Company>Caio Rossi</Company>
     <Product>Passador</Product>
     <Authors>Caio Rossi</Authors>
-    <Copyright>© 2026 Caio Rossi. Todos os direitos reservados.</Copyright>
+    <Copyright>© 2026 Caio Rossi e colaboradores. Licença MIT.</Copyright>
   </PropertyGroup>
 </Project>

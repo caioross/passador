@@ -1,0 +1,23 @@
+# Testes de cada pull request e de cada push na main: o Core, o catálogo e os desenhos (roda em Linux, sem o Windows).
+name: Testes
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - name: Catálogo e desenhos
+        run: python3 tools/confere_catalogo.py
+      - name: Testes do Core
+        run: dotnet test tests/Passador.Testes --nologo

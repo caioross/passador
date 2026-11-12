@@ -187,3 +187,22 @@ estão em `PerfisProntos.cs`:
 
 Em cada perfil, o que ficar vazio vem do Padrão, e o que o Padrão não disser segue de fábrica. O mapa por botão de
 um modelo ganha do mapa por papel (o papel serve para qualquer passador).
+
+## 8. Bandeja: bateria e modo apresentação
+
+- **Bateria.** O Windows guarda o nível que um aparelho Bluetooth informa na propriedade
+  `{104EA319-6EE2-4701-BD47-8DDBF425BBE5} 2` (um byte, 0 a 100), no nó do aparelho Bluetooth, acima da interface HID
+  que o Raw Input entrega. `src/Passador.Motor/Bateria.cs` pega o InstanceId da interface
+  (`CM_Get_Device_Interface_PropertyW`) e sobe pela árvore (`CM_Get_Parent`) até achar a propriedade. Receptor USB
+  2.4 GHz quase nunca informa: o menu diz "não informada". Só leitura, sem administrador.
+- **Modo apresentação.** `SetThreadExecutionState(ES_CONTINUOUS | ES_DISPLAY_REQUIRED | ES_SYSTEM_REQUIRED)` (documentado)
+  segura a tela acesa. Para as notificações não há API pública: o Passador grava o estado WNF que o "Não perturbe" usa
+  (`WNF_SHEL_QUIETHOURS_ACTIVE_PROFILE_CHANGED` = 2, só alarmes) e confere com `SHQueryUserNotificationState` se o
+  Windows parou de aceitar notificações. Se não parou, devolve o estado como estava e mostra só o lembrete (Win+N). Ao
+  desligar ou sair, volta tudo. Não foi ligado de verdade nos testes do 0.2.0 (mexe na tela de quem usa o PC); falta
+  conferir em Windows 10 e 11 com alguém usando.
+- **Perfil fixo.** `Ajustes.PerfilFixo` (nulo = automático) vale para qualquer programa da frente; o teste dentro do
+  próprio Passador continua usando o perfil que está sendo editado.
+- **Migração do Batuta.** O pacote mudou de nome (packId `Batuta` para `Passador`), e o Velopack não troca de pacote numa
+  atualização. O Passador instala ao lado, copia `%LOCALAPPDATA%\Batuta.Dados\config.json` uma vez (sem apagar o
+  antigo), fecha o Batuta aberto (evento `Local\Batuta.Sair`) e tira a chave `Batuta` do Run.
